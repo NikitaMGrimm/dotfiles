@@ -1,0 +1,1 @@
+alias pacdeldep="paru -Qqd | paru -Rsu -"
