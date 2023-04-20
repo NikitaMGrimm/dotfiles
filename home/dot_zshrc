@@ -9,7 +9,8 @@ function pathadd {
 }
 
 pathadd $HOME/.local/share/bob/nvim-bin
-     
+pathadd $HOME/.local/bin
+
 eval $(thefuck --alias)
 # aliases    
 source ~/.aliasrc
