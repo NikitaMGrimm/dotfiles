@@ -1,0 +1,198 @@
+{
+    "layer": "top",
+    "height": 25,
+    "modules-left": [
+        "wlr/workspaces",
+        "hyprland/submap"
+    ],
+    "modules-right": [
+        "custom/progress",
+        "custom/usbguard",
+        "custom/security",
+        "custom/eyes",
+        "custom/yubikey",
+        "custom/decrypted",
+        "custom/systemd",
+        "custom/updates",
+        "custom/mail",
+        "custom/recording",
+        "custom/dnd",
+        "pulseaudio",
+        "network",
+        "custom/vpn",
+        "cpu",
+        "memory",
+        "disk",
+        "custom/movie",
+        "backlight",
+        "hyprland/language",
+        "battery",
+        "clock"
+    ],
+
+    "wlr/workspaces": {
+         "sort-by-number": true,
+         "format": "{icon}",
+         "on-click": "activate"
+    },
+    "custom/security": {
+        "exec": "waybar-security",
+        "return-type": "json",
+        "interval": "once"
+    },
+    "custom/progress": {
+        "exec": "waybar-progress",
+        "return-type": "json",
+        "interval": 1
+    },
+    "custom/usbguard": {
+        "format-icons": {
+            "icon": "<span foreground='#928374'> </span>"
+        },
+        "format": "{icon}{}",
+        "exec": "waybar-usbguard",
+        "return-type": "json",
+        "on-click": "waybar-usbguard allow",
+        "on-click-right": "waybar-usbguard reject"
+    },
+    "custom/eyes": {
+        "exec": "waybar-eyes",
+        "return-type": "json",
+        "on-click": "waybar-eyes done"
+    },
+    "custom/yubikey": {
+        "exec": "waybar-yubikey",
+        "return-type": "json"
+    },
+    "custom/decrypted": {
+        "exec": "waybar-decrypted",
+        "return-type": "json"
+    },
+    "custom/systemd": {
+        "exec": "waybar-systemd",
+        "return-type": "json",
+        "interval": 10
+    },
+    "custom/updates": {
+        "format-icons": {
+            "icon": "<span foreground='#928374'> </span>"
+        },
+        "format": "{icon}{}",
+        "exec": "waybar-updates show",
+        "return-type": "json",
+        "signal": 1,
+        "on-click-right": "waybar-updates refresh",
+        "interval": "once"
+    },
+    "custom/mail": {
+        "format-icons": {
+            "icon": "<span foreground='#928374'> </span>"
+        },
+        "format": "{icon}{}",
+        "exec": "waybar-mail",
+        "return-type": "json"
+    },
+    "custom/vpn": {
+        "exec": "waybar-vpn",
+        "return-type": "json"
+    },
+    "custom/dnd": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='#928374'></span>",
+            "none": "<span foreground='#928374'></span>",
+            "dnd-notification": "<span foreground='#928374'></span>",
+            "dnd-none": "<span foreground='#928374'></span>"
+        },
+        "return-type": "json",
+        "exec": "swaync-client --subscribe-waybar",
+        "on-click": "swaync-client --toggle-dnd --skip-wait",
+        "escape": true
+    },
+    "custom/recording": {
+        "exec": "waybar-recording",
+        "return-type": "json",
+        "signal": 3,
+        "interval": "once"
+    },
+    "custom/movie": {
+        "exec": "waybar-movie",
+        "return-type": "json",
+        "signal": 4,
+        "interval": "once",
+        "on-click": "waybar-movie toggle"
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "<span foreground='#928374'></span> {:%a, %d %b  <span foreground='#928374'></span> %H:%M}"
+    },
+    "cpu": {
+        "format": "<span foreground='#928374'></span> {usage}%",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    "disk": {
+        "format": "<span foreground='#928374'></span> {percentage_free}%",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    "memory": {
+        "format": "<span foreground='#928374'></span> {}%",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    "backlight": {
+        "format": "<span foreground='#928374'>{icon}</span> {percent}%",
+        "format-icons": [""]
+    },
+    "hyprland/language": {
+        // "format": "{flag}",
+        "min-length": 3,
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "<span foreground='#928374'>{icon}</span> {capacity}%",
+        "format-charging": "<span foreground='#928374'></span> {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "interval": 2,
+        "interface": "wlan0",
+        "format-wifi": "<span foreground='#928374'></span> {essid}",
+        "format-ethernet": "<span foreground='#928374'></span> {ifname}",
+        "format-linked": "<span foreground='#928374'></span> {ifname}",
+        "format-disconnected": " <span foreground='#928374'></span> ",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n {bandwidthDownBits}\n {bandwidthUpBits}"
+    },
+    "pulseaudio": {
+        "format": "<span foreground='#928374'>{icon}</span> {volume}%   {format_source}",
+        "format-bluetooth": "<span foreground='#928374'>{icon}</span> {volume}%   {format_source}",
+        "format-bluetooth-muted": "<span foreground='#928374'> {icon}</span>   {format_source}",
+        "format-muted": "<span foreground='#928374'></span>   {format_source}",
+        "format-source": "<span foreground='#928374'></span> {volume}%",
+        "format-source-muted": "<span foreground='#928374'></span>",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "env LIBGL_ALWAYS_SOFTWARE=1 helvum"
+    }
+}
+
+// vi: ft=json
