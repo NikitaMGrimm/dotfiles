@@ -8,6 +8,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- Automatically applies the dotfile change on save to my chezmoi dotfile dir.
 autocmd("BufWritePost", {
-  pattern = "~/.local/share/chezmoi/*)",
-  command = "chezmoi apply --source-path \"%\""
+  pattern = vim.fn.expand("$HOME") .. "/.local/share/chezmoi/*",
+  command = "!chezmoi apply --source-path \"%\""
 })
+

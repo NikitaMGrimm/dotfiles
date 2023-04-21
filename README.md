@@ -1,2 +1,2 @@
 # dotfiles
-My dotfiles for Arch Linux
+My dotfiles for Arch Linux!
