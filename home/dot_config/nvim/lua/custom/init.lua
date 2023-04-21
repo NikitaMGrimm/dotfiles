@@ -6,13 +6,7 @@ local autocmd = vim.api.nvim_create_autocmd
 --   command = "tabdo wincmd =",
 -- })
 
--- vim.api.nvim_exec([[
---   augroup chezmoi_apply
---     autocmd!
---     autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
---   augroup END
--- ]], true)
-
+-- Automatically applies the dotfile change on save to my chezmoi dotfile dir.
 autocmd("BufWritePost", {
   pattern = "~/.local/share/chezmoi/*)",
   command = "chezmoi apply --source-path \"%\""
