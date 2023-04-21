@@ -14,6 +14,6 @@ local autocmd = vim.api.nvim_create_autocmd
 -- ]], true)
 
 autocmd("BufWritePost", {
-  pattern = "~/.local/share/chezmoi/*",
+  pattern = "~/.local/share/chezmoi/*)",
   command = "chezmoi apply --source-path \"%\""
 })
