@@ -21,6 +21,7 @@
         "network",
         "custom/vpn",
         "cpu",
+        "temperature",
         "memory",
         "disk",
         "custom/movie",
@@ -130,9 +131,18 @@
     "cpu": {
         "format": "<span foreground='#928374'></span> {usage}%",
         "states": {
-            "warning": 70,
-            "critical": 90
+            "warning": 85,
+            "critical": 95
         }
+    },
+    "temperature": {
+        "format": "<span foreground='#928374'>{icon}</span> {temperatureC}°C",
+        "format-critical": "<span foreground='#928374'>{icon}</span> {temperatureC}°C",
+        "states": {
+            "warning": 85,
+            "critical": 92
+        },
+        "format-icons": ["", "", "", "", "", "", "", "", "", ""]
     },
     "disk": {
         "format": "<span foreground='#928374'></span> {percentage_free}%",
@@ -167,7 +177,7 @@
     },
     "network": {
         "interval": 2,
-        "interface": "wlan0",
+        // "interface": "wlan0",
         "format-wifi": "<span foreground='#928374'></span> {essid}",
         "format-ethernet": "<span foreground='#928374'></span> {ifname}",
         "format-linked": "<span foreground='#928374'></span> {ifname}",
@@ -191,8 +201,6 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol",
-        "on-click-right": "env LIBGL_ALWAYS_SOFTWARE=1 helvum"
+        "on-click-right": "qpwgraph"
     }
 }
-
-// vi: ft=json

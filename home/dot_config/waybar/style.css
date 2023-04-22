@@ -50,6 +50,7 @@ window#waybar {
 #disk.warning,
 #memory.warning,
 #cpu.warning,
+#temperature.warning,
 #custom-movie.on,
 #custom-dnd.dnd-notification,
 #custom-dnd.dnd-none {
@@ -63,6 +64,7 @@ window#waybar {
 #disk.critical,
 #memory.critical,
 #cpu.critical,
+#temperature.critical,
 #custom-yubikey,
 #custom-eyes,
 #custom-recording {
@@ -87,6 +89,7 @@ window#waybar {
 #custom-mail,
 #network,
 #cpu,
+#temperature,
 #disk,
 #memory,
 #backlight,
@@ -112,6 +115,7 @@ window#waybar {
 #battery,
 #clock,
 #cpu,
+#temperature,
 #custom-eyes,
 #custom-mail,
 #custom-progress,

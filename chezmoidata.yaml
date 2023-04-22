@@ -3,7 +3,7 @@ email: nikitagrimm03@gmail.com
 
 terminalFont:
   family: FiraCode
-  size: 14.0
+  size: 13.0
 
 default_app:
   browser: firefox
