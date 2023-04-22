@@ -17,6 +17,8 @@ misc {
     disable_hyprland_logo = true
     disable_autoreload = true
     no_direct_scanout = false
+    focus_on_activate = true
+    
 }
 
 # Default workspace
@@ -50,8 +52,29 @@ exec-once = swaync
 # Source a file (multi-file configs)
 # source = ~/.config/hypr/myColors.conf
 
-# Some default env vars.
+# Some default env vars. Passed as string so no space after ,
+# Cursor size
 env = XCURSOR_SIZE,24
+# System wide theme
+# env = GTK_THEME,Nord
+# Prefer wayland over x11 when possible
+env = GDK_BACKEND=wayland,x11
+env = QT_QPA_PLATFORM,wayland;xcb
+# Run SDL2 apps in wayland, remove if games are weird!
+env = SDL_VIDEODRIVER,wayland
+# Clutter package should use wayland
+env = CLUTTER_BACKEND,wayland
+
+# Should be set automatically, but just in case:
+env = XDG_CURRENT_DESKTOP,Hyprland
+env = XDG_SESSION_TYPE,wayland
+env = XDG_SESSION_DESKTOP,Hyprland
+
+# QT Variables
+env = QT_AUTO_SCREEN_SCALE_FACTOR,1
+env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+env = QT_QPA_PLATFORMTHEME,qt5ct
+
 
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
 input {
@@ -63,17 +86,23 @@ input {
 
     repeat_delay = 300 
     repeat_rate = 60
-    follow_mouse = 1
+    follow_mouse = 2
 
     touchpad {
-        natural_scroll = yes
+        natural_scroll = true
+        clickfinger_behavior = true
+        middle_button_emulation = true
+        drag_lock = true
     }
 
     sensitivity = -0.1 # -1.0 - 1.0, 0 means no modification.
 }
 
 gestures {
-    workspace_swipe = on
+    workspace_swipe = true
+    workspace_swipe_fingers = 3
+    workspace_swipe_distance = 300
+    workspace_swipe_forever = true
     workspace_swipe_min_speed_to_force = 5
     workspace_swipe_cancel_ratio = 0.3
     workspace_swipe_create_new = false
@@ -94,9 +123,19 @@ general {
 }
 
 decoration {
-    rounding = 10
+    rounding = 7
+    blur = true
+    # Disable if you use animated wallpaper
+    blur_new_optimizations = true
+    drop_shadow = true
+    shadow_range = 7
+    shadow_render_power = 4
     dim_inactive = true
     dim_strength = 0.15
+}
+
+animations {
+    enabled = true
 }
 
 dwindle {
@@ -108,11 +147,15 @@ dwindle {
 master {
     # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
     new_is_master = false
+    no_gaps_when_only = false
+    orientation = top
+    mfact = 0.7
 }
 
-gestures {
-    # See https://wiki.hyprland.org/Configuring/Variables/ for more
-    workspace_swipe = true
+binds {
+    workspace_back_and_forth = true
+    allow_workspace_cycles = true
+    focus_preferred_method = 1
 }
 
 # Example per-device config
@@ -126,6 +169,25 @@ device:roccat-roccat-kone-pro-air-dongle {
 # Example windowrule v2
 # windowrulev2 = float,class:^($APP_TERMINAL)$,title:^($APP_TERMINAL)$
 # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+# windowrule=workspace 1 silent,kitty
+# windowrule=workspace 1 silent,Subl
+# windowrule=workspace 3 silent,Mailspring
+# windowrule=workspace 4 silent,firefox
+# [...]
+# exec-once=kitty
+# exec-once=subl
+# exec-once=mailspring
+# exec-once=firefox
+# [...]
+# exec-once=cleanup_after_start.sh
+#
+# where cleanup_after_start.sh script contains:
+#
+# sleep 10
+# hyprctl keyword windowrule "workspace unset,kitty"
+# hyprctl keyword windowrule "workspace unset,Subl"
+# hyprctl keyword windowrule "workspace unset,Mailspring"
+# hyprctl keyword windowrule "workspace unset,firefox"
 
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
