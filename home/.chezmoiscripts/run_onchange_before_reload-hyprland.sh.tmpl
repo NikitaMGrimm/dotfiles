@@ -1,0 +1,6 @@
+#!/bin/bash
+
+{{- $HYPRLAND_CONFIG := joinPath .chezmoi.sourceDir "/dot_config/hypr/hyprland.conf.tmpl" -}}
+# hyprland config hash: {{ include $HYPRLAND_CONFIG | sha256sum }}
+
+hyprctl reload

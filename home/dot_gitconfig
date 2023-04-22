@@ -40,7 +40,6 @@
   br = branch -av 
   # Show the current branch name (useful for shell prompts) 
   brname = !git branch | grep "^*" | awk '{ print $2 }' 
-  # Delete a branch brdel = branch -D
 
 [web]
   browser = firefox
