@@ -16,12 +16,23 @@ chmod +x pacman-static
 echo "Updating CA certificates."
 sudo update-ca-trust
 
-echo "Updating database..."
+echo "Updating database.."
+echo "  Removing old database..."
+sudo rm /var/lib/pacman/sync/*
+echo "  Updating the keyring."
+echo "    Removing gnupg..."
+sudo rm -rf /etc/pacman.d/gnupg/*
+echo "    Initialize keys..."
+sudo pacman-key --init
+sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+sudo pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+echo "    Populate keyring..."
+sudo pacman-key --populate
 # Don't run this often! Puts strain on servers due to yy. In case of database corruption.
 sudo ./pacman-static --needed --noconfirm -Syy
-
-echo "Updating the keyring."
-sudo ./pacman-static --needed --noconfirm -S archlinux-keyring 
+sudo ./pacman-static --needed --noconfirm -S archlinux-keyring
 
 echo "Updating the mirrorlist..."
 sudo reflector
