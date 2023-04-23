@@ -1,5 +1,0 @@
-" change the tridactyl theme 
-set theme dark
-
-" open nvim on insert with <C-i>
-set editorcmd kitty zsh -c "/home/nikita/.local/share/bob/nvim-bin/nvim %f '+normal!%lGzv%c|'"

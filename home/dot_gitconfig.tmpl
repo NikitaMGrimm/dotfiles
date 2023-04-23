@@ -1,11 +1,11 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines
-  name = Nikita Maximilian Grimm
-  email = nikitagrimm03@gmail.com
+  name = {{ .name }}
+  email = {{ .email }}
 
 [core]
-  editor = nvim
+  editor = {{ .default_app.editor }}
 
 [init]
   defaultBranch = main
@@ -42,7 +42,7 @@
   brname = !git branch | grep "^*" | awk '{ print $2 }' 
 
 [web]
-  browser = firefox
+  browser = {{ .default_app.browser }}
 
 [credential "https://github.com"]
 	helper = 

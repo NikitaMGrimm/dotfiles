@@ -14,6 +14,20 @@
     stripComponents: 1
     refreshPeriod: "168h"
 
+".oh-my-zsh/custom/plugins/zsh-vi-mode":
+    type: "archive"
+    url: "https://github.com/jeffreytse/zsh-vi-mode/archive/master.tar.gz" 
+    exact: true
+    stripComponents: 1
+    refreshPeriod: "168h"
+
+".oh-my-zsh/custom/plugins/fast-syntax-highlighting":
+    type: "archive"
+    url: "https://github.com/zdharma-continuum/fast-syntax-highlighting/archive/master.tar.gz" 
+    exact: true
+    stripComponents: 1
+    refreshPeriod: "168h"
+
 # ranger plugins
 ".config/ranger/plugins/zoxide":
     type: "archive"

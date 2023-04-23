@@ -1,0 +1,9 @@
+{{- $pac_conf := "/etc/pacman.conf" -}}
+
+{{- $has_g14 := eq (output "bash" "-c" (printf "grep -cm1 '\\[g14\\]' %s || true" $pac_conf) | trim) "1" -}}
+{{- if $has_g14 -}}
+sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+sudo pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+{{- end -}}

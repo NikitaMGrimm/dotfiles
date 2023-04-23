@@ -1,0 +1,5 @@
+" change the tridactyl theme 
+set theme dark
+
+" open {{ .default_app.editor }} on insert with <C-i>
+set editorcmd kitty zsh -c "{{ .default_app.editor }} %f '+normal!%lGzv%c|'"

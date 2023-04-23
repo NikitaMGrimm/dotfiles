@@ -9,4 +9,7 @@ default_app:
   browser: firefox
   editor: nvim
   terminal: kitty
+  shell: zsh
+  pager: less
   bar: waybar
+  aur_helper: yay

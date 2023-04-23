@@ -1,0 +1,48 @@
+# Disable automatic updates.
+zstyle ':omz:update' mode disabled
+DISABLE_AUTO_UPDATE="true"
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Theming
+ZSH_THEME="robbyrussell"
+export LS_COLORS="$(vivid generate jellybeans)"
+fastfetch
+
+# Misc
+HYPHEN_INSENSITIVE="true"
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="yyyy-mm-dd"
+
+# Standard plugins. Can be found in $ZSH/plugins/
+plugins=(
+        git
+        kubectl
+        history 
+        emoji 
+        encode64 
+        sudo
+        web-search
+        copyfile
+        copybuffer
+        dirhistory
+        globalias
+)
+
+ZSH_CUSTOM=$ZSH/custom
+# Custom plugins. Add to $ZSH_CUSTOM/plugins/
+plugins+=(zsh-vi-mode)
+plugins+=(zsh-autosuggestions)
+plugins+=(fast-syntax-highlighting)
+source $ZSH/oh-my-zsh.sh
+
+# Ranger configuration
+export VISUAL=$EDITOR
+if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
+
+# Source my aliases
+source ~/.aliasrc
+
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"

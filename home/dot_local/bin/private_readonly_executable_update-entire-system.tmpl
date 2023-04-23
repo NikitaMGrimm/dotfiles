@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Needs yay, reflector, curl, user with sudo
 PACMAN_STATIC="https://pkgbuild.com/~morganamilo/pacman-static/x86_64/bin/pacman-static"
@@ -24,10 +24,8 @@ echo "    Removing gnupg..."
 sudo rm -rf /etc/pacman.d/gnupg/*
 echo "    Initialize keys..."
 sudo pacman-key --init
-sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-sudo pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+{{ template "import-pacman-keys" }}
+
 echo "    Populate keyring..."
 sudo pacman-key --populate
 # Don't run this often! Puts strain on servers due to yy. In case of database corruption.

@@ -1,0 +1,15 @@
+#
+# ~/.zshenv
+#
+
+function pathadd {
+    PATH=:$PATH
+    PATH=$1${PATH//:$1:/:}
+}
+
+pathadd $HOME/.local/bin
+pathadd $HOME/.local/share/bob/nvim-bin
+
+EDITOR={{ .default_app.editor }}
+SHELL={{ .default_app.shell }}
+PAGER={{ .default_app.pager }}
