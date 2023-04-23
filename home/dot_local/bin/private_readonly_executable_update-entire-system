@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Needs yay, reflector, curl, user with sudo
+PACMAN_STATIC="https://pkgbuild.com/~morganamilo/pacman-static/x86_64/bin/pacman-static"
+
+echo "First, go to https://archlinux.org/news/ to check if there is something you have to do first!"
+sleep 2
+read -p "Press any key to continue... " -n1 -s
+
+echo "Downloading pacman-static..."
+mkdir -p /tmp/pacman-static-build
+cd /tmp/pacman-static-build
+curl $PACMAN_STATIC --output pacman-static
+chmod +x pacman-static
+
+echo "Updating CA certificates."
+sudo update-ca-trust
+
+echo "Updating database..."
+# Don't run this often! Puts strain on servers due to yy. In case of database corruption.
+sudo ./pacman-static --needed --noconfirm -Syy
+
+echo "Updating the keyring."
+sudo ./pacman-static --needed --noconfirm -S archlinux-keyring 
+
+echo "Updating the mirrorlist..."
+sudo reflector
+
+echo "Upgrading the system with pacman-static..."
+# Allow potential downgrades of packages if the mirror is not up-to-date.
+sudo ./pacman-static -Suu
+
+# TODO? Idk if needed but before running reflector, maybe get the default mirror list.
+
+echo "Upgrading the system again with yay to update AUR..."
+yay
+
+echo "Removing unneeded packages..."
+yay -Qqd | yay -Rsu -
+
+echo "Uninstalling pacman-static..."
+rm -rf /tmp/pacman-static-build
+
+echo "Finished updating the system."
+
