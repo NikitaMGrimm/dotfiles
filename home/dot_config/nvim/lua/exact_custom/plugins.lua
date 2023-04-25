@@ -52,6 +52,28 @@ local plugins = {
   --   "NvChad/nvim-colorizer.lua",
   --   enabled = false
   -- },
+  {
+   'tools-life/taskwiki',
+    event = "BufEnter *.md",
+    dependencies = {
+      {
+       'vimwiki/vimwiki',
+       init = function () --replace 'config' with 'init'
+          vim.g.vimwiki_list = {{path = '~/Documents/Wiki', ext = '.md'}}
+       end,
+      },
+      {
+        'powerman/vim-plugin-AnsiEsc',
+      },
+      {
+        'majutsushi/tagbar',
+      },
+      {
+        'farseer90718/vim-taskwarrior',
+      },
+    },
+    -- lazy = false,
+  },
 
 }
 

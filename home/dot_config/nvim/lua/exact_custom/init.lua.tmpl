@@ -1,0 +1,29 @@
+local autocmd = vim.api.nvim_create_autocmd
+
+-- Automatically applies the dotfile change on save to my chezmoi dotfile dir.
+autocmd("BufWritePost", {
+  pattern = "{{ joinPath .chezmoi.workingTree "/*" }}", -- */;,
+  command = "!chezmoi apply --source-path \"%\"; chezmoi apply --include templates,scripts"
+})
+
+local enable_providers = {
+      "python3_provider",
+      "node_provider",
+      -- and so on
+    }
+    for _, plugin in pairs(enable_providers) do
+      vim.g["loaded_" .. plugin] = nil
+      vim.cmd("runtime " .. plugin)
+    end
+
+vim.filetype.add({
+  pattern = {
+    ['.*%..*%.tmpl'] = function(path)
+      local filename = vim.fn.fnamemodify(path, ':t')
+      -- Split the filename by '.' delimiter
+      local segments = vim.split(filename, '%.')
+      -- Return the second-to-last segment
+      return segments[#segments - 1]
+    end,
+  }
+})
