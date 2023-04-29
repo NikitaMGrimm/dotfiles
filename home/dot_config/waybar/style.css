@@ -108,7 +108,9 @@ window#waybar {
 }
 
 #tray {
-  margin-left: -1000000px;
+  /* margin-left: -1000000px; */
+  margin: 0 6px;
+  padding: 0 3px;
 }
 
 #backlight,

@@ -6,6 +6,7 @@
         "hyprland/submap"
     ],
     "modules-right": [
+        "tray",
         "custom/progress",
         "custom/usbguard",
         "custom/security",
@@ -183,6 +184,11 @@
         "format-linked": "<span foreground='#928374'></span> {ifname}",
         "format-disconnected": " <span foreground='#928374'></span> ",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n {bandwidthDownBits}\n {bandwidthUpBits}"
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 12,
+        "show-passive-items": true, 
     },
     "pulseaudio": {
         "format": "<span foreground='#928374'>{icon}</span> {volume}%   {format_source}",
