@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sleep 9
+rog-control-center

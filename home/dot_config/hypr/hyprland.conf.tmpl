@@ -39,12 +39,11 @@ wsbind = 0, DP-1
 
 # Execute your favorite apps at launch
 exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once = rog-control-center-starter
 exec-once = xdg-desktop-portal-starter
 exec-once = /usr/lib/polkit-kde-authentication-agent-1
-
 exec-once = $APP_BAR
 exec-once = $APP_BROWSER
-exec-once = rog-control-center
 exec-once = imwheel
 exec-once = hyprpaper
 exec-once = swaync 
@@ -124,7 +123,7 @@ general {
 
 decoration {
     rounding = 7
-    blur = true
+    blur = false
     # Disable if you use animated wallpaper
     blur_new_optimizations = true
     drop_shadow = true
