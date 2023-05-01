@@ -16,7 +16,9 @@ misc {
     disable_autoreload = true
     no_direct_scanout = false
     focus_on_activate = true
-    
+    mouse_move_enables_dpms = true
+    enable_swallow = true
+    swallow_regex = ^(kitty)$
 }
 
 # Default workspace
@@ -215,8 +217,11 @@ bindle = , F8, exec, light -A 1
 # Media control.
 bindle = , XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+
 bindle = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-
+bindle = CONTROL, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SOURCE@ 2%+
+bindle = CONTROL, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 2%-
 bindle = , F1, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindle = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
 bindle = , XF86AudioPlay, exec, playerctl play-pause
 bindle = , XF86AudioStop, exec, playerctl stop
 bindle = , XF86AudioNext, exec, playerctl next
