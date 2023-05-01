@@ -1,0 +1,14 @@
+[Unit]
+Description=starts easyeffects for eq
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 5
+ExecStart=/usr/bin/easyeffects --gapplication-service
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target

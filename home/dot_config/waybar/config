@@ -197,6 +197,7 @@
         "format-muted": "<span foreground='#928374'></span>   {format_source}",
         "format-source": "<span foreground='#928374'></span> {volume}%",
         "format-source-muted": "<span foreground='#928374'></span>",
+        "ignored-sinks": ["Easy Effects Sink"],
         "format-icons": {
             "headphone": "",
             "hands-free": "",
