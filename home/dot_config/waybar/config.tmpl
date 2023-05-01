@@ -183,6 +183,7 @@
         "format-ethernet": "<span foreground='#928374'></span> {ifname}",
         "format-linked": "<span foreground='#928374'></span> {ifname}",
         "format-disconnected": " <span foreground='#928374'></span> ",
+        "on-click": "hyprctl dispatch exec '[float] {{ .default_app.terminal }} {{ .default_app.shell }} -c \"nmtui\"'",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n {bandwidthDownBits}\n {bandwidthUpBits}"
     },
     "tray": {
