@@ -24,8 +24,10 @@ misc {
 }
 
 # Default workspace
+{{- if eq .chezmoi.hostname "vito" }}
 workspace = eDP-1, 1
 workspace = DP-1, 6
+{{- end }}
 # Workspace 1 will always open on laptop screen.
 wsbind = 1, eDP-1
 wsbind = 2, eDP-1

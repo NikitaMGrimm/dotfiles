@@ -207,7 +207,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol",
-        "on-click-right": "qpwgraph"
+        "on-click": "hyprctl dispatch exec '[float] pavucontrol'",
+        "on-click-right": "hyprctl dispatch exec '[float] qpwgraph'"
     }
 }
