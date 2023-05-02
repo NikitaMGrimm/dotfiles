@@ -53,25 +53,15 @@ exec-once = /bin/sleep 10; systemctl --user start easyeffects-user.service
 # Source a file (multi-file configs)
 # source = ~/.config/hypr/myColors.conf
 
-# Some default env vars. Passed as string so no space after ,
-# Cursor size
-# env = XCURSOR_SIZE,24
-# System wide theme
-# env = GTK_THEME,Arc-Gruvbox
 # Prefer wayland over x11 when possible
 env = GDK_BACKEND=wayland,x11
 env = QT_QPA_PLATFORM,wayland;xcb
-# Run SDL2 apps in wayland, remove if games are weird!
-env = SDL_VIDEODRIVER,wayland
-# Clutter package should use wayland
+env = SDL_VIDEODRIVER,wayland # Run SDL2 apps in wayland, remove if games are weird!
 env = CLUTTER_BACKEND,wayland
-
-# Should be set automatically, but just in case:
 env = XDG_CURRENT_DESKTOP,Hyprland
 env = XDG_SESSION_TYPE,wayland
 env = XDG_SESSION_DESKTOP,Hyprland
 
-# QT Variables
 env = QT_AUTO_SCREEN_SCALE_FACTOR,1
 env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 env = QT_QPA_PLATFORMTHEME,qt5ct
