@@ -49,7 +49,7 @@ exec-once = $APP_BAR
 exec-once = $APP_BROWSER
 exec-once = imwheel
 exec-once = hyprpaper
-exec-once = systemctl --user start easyeffects-user.service
+exec-once = /bin/sleep 10; systemctl --user start easyeffects-user.service
 
 # Source a file (multi-file configs)
 # source = ~/.config/hypr/myColors.conf
@@ -179,7 +179,7 @@ binds {
 }
 
 {{- if eq .chezmoi.hostname "vito" }}
-exec-once = sleep 10; rog-control-center
+exec-once = /bin/sleep 10; rog-control-center
 
 monitor = eDP-1, 2560x1440@165, 0x0, 1
 monitor = desc:Acer Technologies XV272U KV 91011EB954203, 2560x1440@170, auto, 1
