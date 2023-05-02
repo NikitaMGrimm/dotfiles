@@ -43,7 +43,6 @@ exec-once = xdg-desktop-portal-starter
 exec-once = swaync 
 # Authentication agent.
 exec-once = /usr/lib/polkit-kde-authentication-agent-1
-windowrule = float,org.kde.polkit-kde-authentication-agent-1
 # QOL 
 exec-once = $APP_BAR
 exec-once = $APP_BROWSER
@@ -213,9 +212,10 @@ device:roccat-roccat-kone-pro-air-dongle {
 # hyprctl keyword windowrule "workspace unset,Subl"
 # hyprctl keyword windowrule "workspace unset,Mailspring"
 # hyprctl keyword windowrule "workspace unset,firefox"
+windowrule = float,org.kde.polkit-kde-authentication-agent-1
 windowrule = float, pavucontrol
-windowrule = float, pavucontrol-qt
 windowrule = float, qpwgraph
+windowrule = float, Rofi
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 # Backlight brightness control.
 bindle = , F7, exec, light -U 1
@@ -242,7 +242,7 @@ bind = $win, D, killactive,
 # bind = $win, M, exit,
 bind = $win, slash, exec, $APP_TERMINAL zsh -c "ranger"
 # bind = $win, R, exec, wofi --show drun
-bind = $win, R, exec, tofi-drun --drun-launch=true
+bind = $win, R, exec, killall rofi || rofi -show drun -theme ~/.config/rofi/global/rofi.rasi
 # bind = $win, P, pseudo, # dwindle
 # bind = $win $shift, I, togglesplit, # dwindl
 
