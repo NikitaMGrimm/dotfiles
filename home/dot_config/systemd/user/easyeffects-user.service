@@ -7,7 +7,7 @@ StartLimitBurst=5
 Type=simple
 ExecStartPre=/bin/sleep 5
 ExecStart=/usr/bin/easyeffects --gapplication-service
-Restart=on-failure
+Restart=always
 RestartSec=5s
 
 [Install]
