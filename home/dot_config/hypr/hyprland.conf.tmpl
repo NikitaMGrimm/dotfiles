@@ -7,16 +7,17 @@ $APP_TERMINAL = {{ .default_app.terminal }}
 $APP_BAR = {{ .default_app.bar }}
 
 # Set env variables.
-env = GDK_BACKEND=wayland,x11 # Prefer wayland over x11 when possible
-env = QT_QPA_PLATFORM,wayland;xcb
-env = SDL_VIDEODRIVER,wayland # Run SDL2 apps in wayland, remove if games are weird!
-env = CLUTTER_BACKEND,wayland
-env = XDG_CURRENT_DESKTOP,Hyprland
-env = XDG_SESSION_TYPE,wayland
-env = XDG_SESSION_DESKTOP,Hyprland
-env = QT_AUTO_SCREEN_SCALE_FACTOR,1
-env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-env = QT_QPA_PLATFORMTHEME,qt5ct
+env = GDK_BACKEND=wayland,  x11 # Prefer wayland over x11 when possible
+env = QT_QPA_PLATFORM,      wayland;xcb
+env = SDL_VIDEODRIVER,      wayland # Run SDL2 apps in wayland, remove if games are weird!
+env = CLUTTER_BACKEND,      wayland
+env = XDG_CURRENT_DESKTOP,  Hyprland
+env = XDG_SESSION_TYPE,     wayland
+env = XDG_SESSION_DESKTOP,  Hyprland
+
+env = QT_AUTO_SCREEN_SCALE_FACTOR,          1
+env = QT_WAYLAND_DISABLE_WINDOWDECORATION,  1
+env = QT_QPA_PLATFORMTHEME,                 qt5ct
 
 # Execute on start.
 exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -33,26 +34,26 @@ exec-once = /bin/sleep 10; /usr/bin/easyeffects --gapplication-service
 # source = ~/.config/hypr/myColors.conf
 
 # Default workspaces.
-workspace = 1, monitor:eDP-1, default:true
-workspace = 2, monitor:eDP-1
-workspace = 3, monitor:eDP-1
-workspace = 4, monitor:eDP-1
-workspace = 5, monitor:eDP-1
+workspace = 1,  monitor:eDP-1,  default:true
+workspace = 2,  monitor:eDP-1
+workspace = 3,  monitor:eDP-1
+workspace = 4,  monitor:eDP-1
+workspace = 5,  monitor:eDP-1
 
-workspace = 6, monitor:DP-1, default:true
-workspace = 7, monitor:DP-1
-workspace = 8, monitor:DP-1
-workspace = 9, monitor:DP-1
-workspace = 0, monitor:DP-1
+workspace = 6,  monitor:DP-1,   default:true
+workspace = 7,  monitor:DP-1
+workspace = 8,  monitor:DP-1
+workspace = 9,  monitor:DP-1
+workspace = 0,  monitor:DP-1
 
 # Monitor setup.
-monitor = , preferred, auto, 1 # Add mirror,[NAME] to mirror the monitor.
+monitor = ,  preferred,  auto,  1 # Add mirror,[NAME] to mirror the monitor.
 # Laptop specific config. 
 {{- if eq .chezmoi.hostname "vito" }}
 exec-once = /bin/sleep 10; rog-control-center
 
-monitor = eDP-1, 2560x1440@165, 0x0, 1
-monitor = desc:Acer Technologies XV272U KV 91011EB954203, 2560x1440@170, auto, 1
+monitor =                        eDP-1,                    2560x1440@165,  0x0,   1
+monitor = desc:Acer Technologies XV272U KV 91011EB954203,  2560x1440@170,  auto,  1
 
 device:roccat-roccat-kone-pro-air-dongle {
     sensitivity = -0.5
@@ -60,237 +61,235 @@ device:roccat-roccat-kone-pro-air-dongle {
 {{- end }}
 
 misc {
-  vrr = 1
-  vfr = true
-  disable_hyprland_logo = true
-  disable_autoreload = true
-  no_direct_scanout = false
-  focus_on_activate = true
-  mouse_move_enables_dpms = true
-  enable_swallow = true
-  swallow_regex = ^($APP_TERMINAL)$
+    vrr                     = 1
+    vfr                     = true
+    disable_hyprland_logo   = true
+    disable_autoreload      = true
+    no_direct_scanout       = false
+    focus_on_activate       = true
+    mouse_move_enables_dpms = true
+    enable_swallow          = true
+    swallow_regex           = ^($APP_TERMINAL)$
 }
 
 general {
-    border_size = 2
-    col.active_border = rgb(777777)
-    # col.inactive_border = rgb(222222)
+    border_size         = 2
+    col.active_border   = rgb(777777)
+    col.inactive_border = rgb(222222)
 
-    gaps_in = 5
-    gaps_out = 8
-
-    layout = master
+    layout    = master
+    gaps_in   = 5
+    gaps_out  = 8
 
     cursor_inactive_timeout = 10
-    no_cursor_warps = true
+    no_cursor_warps         = true
 }
 
 master {
     # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-    new_is_master = false
+    new_is_master     = false
     no_gaps_when_only = true
-    orientation = left 
-    mfact = 0.7
+    orientation       = left 
+    mfact             = 0.7
 }
 
 dwindle {
-    pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    pseudotile     = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
     preserve_split = yes
 }
 
 binds {
     workspace_back_and_forth = true
-    allow_workspace_cycles = true
-    focus_preferred_method = 1
+    allow_workspace_cycles   = true
+    focus_preferred_method   = 1
 }
 
 input {
-    kb_layout = us
+    kb_layout  = us
     kb_variant =
-    kb_model =
+    kb_model   =
     kb_options =
-    kb_rules =
+    kb_rules   =
 
     repeat_delay = 300 
-    repeat_rate = 60
+    repeat_rate  = 60
     follow_mouse = 0
 
     touchpad {
-        natural_scroll = true
-        clickfinger_behavior = true
+        natural_scroll          = true
+        clickfinger_behavior    = true
         middle_button_emulation = true
-        drag_lock = true
+        drag_lock               = true
     }
 
     sensitivity = -0.1 # -1.0 - 1.0, 0 means no modification.
 }
 
 gestures {
-    workspace_swipe = true
-    workspace_swipe_fingers = 3
-    workspace_swipe_distance = 300
-    workspace_swipe_forever = true
+    workspace_swipe                    = true
+    workspace_swipe_fingers            = 3
+    workspace_swipe_distance           = 300
+    workspace_swipe_forever            = true
     workspace_swipe_min_speed_to_force = 5
-    workspace_swipe_cancel_ratio = 0.3
-    workspace_swipe_create_new = false
+    workspace_swipe_cancel_ratio       = 0.3
+    workspace_swipe_create_new         = false
 }
 
 decoration {
-    rounding = 7
+    rounding          = 7
     multisample_edges = true
 
-    blur = true
-    blur_size = 2
-    blur_passes = 2
+    blur                   = true
+    blur_size              = 2
+    blur_passes            = 2
     blur_new_optimizations = true # Disable if you use animated wallpaper
 
-    dim_inactive = true
-    dim_strength = 0.15
-
-    drop_shadow = true
+    dim_inactive         = true
+    dim_strength         = 0.15
+    drop_shadow          = true
     shadow_ignore_window = true
-    shadow_offset = 2 2
-    shadow_range = 4
-    shadow_render_power = 2
-    col.shadow = 0x66000000
+    shadow_offset        = 2 2
+    shadow_range         = 4
+    shadow_render_power  = 2
+    col.shadow           = 0x66000000
 }
 
 animations {
     enabled = true
 
-    bezier = overshot, 0.05, 0.9, 0.1, 1.05
-    bezier = smoothOut, 0.36, 0, 0.66, -0.56
-    bezier = smoothIn, 0.25, 1, 0.5, 1
+    bezier = overshot,  0.05,  0.9,  0.1,  1.05
+    bezier = smoothOut, 0.36,  0,    0.66, -0.56
+    bezier = smoothIn,  0.25,  1,    0.5,  1
 
-    animation = windows, 1, 5, overshot, slide
-    animation = windowsOut, 1, 4, smoothOut, slide
-    animation = windowsMove, 1, 4, default
-    animation = border, 1, 10, default
-    animation = fade, 1, 10, smoothIn
-    animation = fadeDim, 1, 10, smoothIn
-    animation = workspaces, 1, 6, default
+    animation = windows,      1,  5,   overshot,   slide
+    animation = windowsOut,   1,  4,   smoothOut,  slide
+    animation = windowsMove,  1,  4,   default
+    animation = border,       1,  10,  default
+    animation = fade,         1,  10,  smoothIn
+    animation = fadeDim,      1,  10,  smoothIn
+    animation = workspaces,   1,  6,   default
 }
 
-windowrulev2 = float, class:org.kde.polkit-kde-authentication-agent-1
-windowrulev2 = float, class:^(pavucontrol)$
-windowrulev2 = float, class:qpwgraph
-windowrulev2 = float, class:Rofi
-windowrulev2 = float, class:^(gimp)$
+windowrulev2 = float,  class:org.kde.polkit-kde-authentication-agent-1
+windowrulev2 = float,  class:^(pavucontrol)$
+windowrulev2 = float,  class:qpwgraph
+windowrulev2 = float,  class:Rofi
+windowrulev2 = float,  class:^(gimp)$
 
-layerrule = blur, ^(gtk-layer-shell)$
+layerrule = blur,  ^(gtk-layer-shell)$
 
 # Backlight brightness control.
-bindle = , F7, exec, light -U 1
-bindle = , F8, exec, light -A 1
+bindle = ,  F7,  exec,  light -U 1
+bindle = ,  F8,  exec,  light -A 1
 
 # Media control.
-bindle = , XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+
-bindle = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-
-bindle = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-bindle = , F1, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindle = ,          XF86AudioRaiseVolume,  exec,  wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+
+bindle = ,          XF86AudioLowerVolume,  exec,  wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-
+bindle = ,          XF86AudioMute,         exec,  wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindle = ,          F1,                    exec,  wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
-bindle = CONTROL, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SOURCE@ 2%+
-bindle = CONTROL, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 2%-
-bindle = CONTROL, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-bindle = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindle = CONTROL,   XF86AudioRaiseVolume,  exec,  wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SOURCE@ 2%+
+bindle = CONTROL,   XF86AudioLowerVolume,  exec,  wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 2%-
+bindle = CONTROL,   XF86AudioMute,         exec,  wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindle = ,          XF86AudioMicMute,      exec,  wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
-bindle = , XF86AudioPlay, exec, playerctl play-pause
-bindle = , XF86AudioStop, exec, playerctl stop
-bindle = , XF86AudioNext, exec, playerctl next
-bindle = , XF86AudioPrev, exec, playerctl previous
+bindle = ,          XF86AudioPlay,         exec,  playerctl play-pause
+bindle = ,          XF86AudioStop,         exec,  playerctl stop
+bindle = ,          XF86AudioNext,         exec,  playerctl next
+bindle = ,          XF86AudioPrev,         exec,  playerctl previous
 
 # Window management.
-bind = , F11, fullscreen
+bind = ,     F11,   fullscreen
 bind = $win, space, togglefloating, active 
 # Master layout
-bind = $win ALT_L, j, layoutmsg, orientationnext
-bind = $win ALT_L, k, layoutmsg, swapwithmaster
-bind = $win ALT_L, h, layoutmsg, focusmaster
-bind = $win ALT_L, n, layoutmsg, addmaster
-bind = $win ALT_L, m, layoutmsg, removemaster
+bind = $win ALT_L,  j,  layoutmsg,  orientationnext
+bind = $win ALT_L,  k,  layoutmsg,  swapwithmaster
+bind = $win ALT_L,  h,  layoutmsg,  focusmaster
+bind = $win ALT_L,  n,  layoutmsg,  addmaster
+bind = $win ALT_L,  m,  layoutmsg,  removemaster
 # Move focus.
-bind = $win, h, movefocus, l
-bind = $win, left, movefocus, l
-bind = $win, l, movefocus, r
-bind = $win, down, movefocus, r
-bind = $win, k, movefocus, u
-bind = $win, up, movefocus, u
-bind = $win, j, movefocus, d
-bind = $win, right, movefocus, d
+bind = $win,  h,     movefocus,  l
+bind = $win,  left,  movefocus,  l
+bind = $win,  l,     movefocus,  r
+bind = $win,  down,  movefocus,  r
+bind = $win,  k,     movefocus,  u
+bind = $win,  up,    movefocus,  u
+bind = $win,  j,     movefocus,  d
+bind = $win,  right, movefocus,  d
 # Switch workspaces with mainMod + [0-9]
-bind = $win, 1, workspace, 1
-bind = $win, 2, workspace, 2
-bind = $win, 3, workspace, 3
-bind = $win, 4, workspace, 4
-bind = $win, 5, workspace, 5
-bind = $win, 6, workspace, 6
-bind = $win, 7, workspace, 7
-bind = $win, 8, workspace, 8
-bind = $win, 9, workspace, 9
-bind = $win, 0, workspace, 10
+bind = $win,  1,  workspace,  1
+bind = $win,  2,  workspace,  2
+bind = $win,  3,  workspace,  3
+bind = $win,  4,  workspace,  4
+bind = $win,  5,  workspace,  5
+bind = $win,  6,  workspace,  6
+bind = $win,  7,  workspace,  7
+bind = $win,  8,  workspace,  8
+bind = $win,  9,  workspace,  9
+bind = $win,  0,  workspace,  10
 # Move the focused window.
-bind = $win $shift, h, movewindow, l
-bind = $win $shift, left, movewindow, l
-bind = $win $shift, l, movewindow, r
-bind = $win $shift, down, movewindow, r
-bind = $win $shift, k, movewindow, u
-bind = $win $shift, up, movewindow, u
-bind = $win $shift, j, movewindow, d
-bind = $win $shift, right, movewindow, d
+bind = $win $shift,  h,      movewindow,  l
+bind = $win $shift,  left,   movewindow,  l
+bind = $win $shift,  l,      movewindow,  r
+bind = $win $shift,  down,   movewindow,  r
+bind = $win $shift,  k,      movewindow,  u
+bind = $win $shift,  up,     movewindow,  u
+bind = $win $shift,  j,      movewindow,  d
+bind = $win $shift,  right,  movewindow,  d
 # Move focused window to a workspace with mainMod + $shift + [0-9]
-bind = $win $shift, 1, movetoworkspace, 1
-bind = $win $shift, 2, movetoworkspace, 2
-bind = $win $shift, 3, movetoworkspace, 3
-bind = $win $shift, 4, movetoworkspace, 4
-bind = $win $shift, 5, movetoworkspace, 5
-bind = $win $shift, 6, movetoworkspace, 6
-bind = $win $shift, 7, movetoworkspace, 7
-bind = $win $shift, 8, movetoworkspace, 8
-bind = $win $shift, 9, movetoworkspace, 9
-bind = $win $shift, 0, movetoworkspace, 10
+bind = $win $shift,  1,  movetoworkspace,  1
+bind = $win $shift,  2,  movetoworkspace,  2
+bind = $win $shift,  3,  movetoworkspace,  3
+bind = $win $shift,  4,  movetoworkspace,  4
+bind = $win $shift,  5,  movetoworkspace,  5
+bind = $win $shift,  6,  movetoworkspace,  6
+bind = $win $shift,  7,  movetoworkspace,  7
+bind = $win $shift,  8,  movetoworkspace,  8
+bind = $win $shift,  9,  movetoworkspace,  9
+bind = $win $shift,  0,  movetoworkspace,  10
 # Scroll through existing workspaces with mainMod + scroll
-bind = $win, mouse_down, workspace, e+1
-bind = $win, mouse_up, workspace, e-1
+bind = $win,         mouse_down,  workspace,  e+1
+bind = $win,         mouse_up,    workspace,  e-1
 # Cycle to the next window. 
-bind = $win $shift, space, cyclenext
+bind = $win $shift,  space,       cyclenext
 # Go to urgent or last window.
-bind = $win, Tab, exec, hyprctl dispatcher focusurgentorlast ""
+bind = $win,         Tab,         exec,       hyprctl dispatcher focusurgentorlast ""
 # Move/resize windows with mainMod + LMB/RMB and dragging
-bindm = $win, mouse:272, movewindow
-bindm = $win, mouse:273, resizewindow
+bindm = $win,        mouse:272,   movewindow
+bindm = $win,        mouse:273,   resizewindow
 
 # Screen recording / Snipping tool
 $screenshotarea = hyprctl keyword animation "fadeOut,0,0,default"; grimblast --notify copysave area; hyprctl keyword animation "fadeOut,1,4,default"
-bind = $win $shift, S, exec, $screenshotarea
-bind = , Print, exec, grimblast --notify --cursor copysave output
-bind = ALT, Print, exec, grimblast --notify --cursor copysave screen # TODO: open it in gimp.
+bind = $win $shift,  S,           exec,  $screenshotarea
+bind = ,             Print,       exec,  grimblast --notify --cursor copysave output
+bind = ALT,          Print,       exec,  grimblast --notify --cursor copysave screen # TODO: open it in gimp.
 
 # Application shortcuts 
-bind = $win, Q, exec, $APP_TERMINAL
-bind = $win, D, killactive, 
-bind = $win $shift, D, exit,
-bind = $win, slash, exec, $APP_TERMINAL zsh -c "ranger"
-bind = $win $shift, q, exec, swaync-client --close-all
-bind = $win, R, exec, killall rofi || rofi -show drun -theme ~/.config/rofi/global/rofi.rasi
-bind = SUPER, period, exec, killall rofi || rofi -show emoji -emoji-format "{emoji}" -modi emoji -theme ~/.config/rofi/global/emoji
-bind = SUPER, F1, exec, ~/.config/hypr/keybind
-# bind = $win, P, pseudo, # dwindle
-# bind = $win $shift, I, togglesplit, # dwindl
+bind = $win,         Q,           exec,  $APP_TERMINAL
+bind = $win,         D,           killactive, 
+bind = $win $shift,  D,           exit,
+bind = $win,         slash,       exec,  $APP_TERMINAL zsh -c "ranger"
+bind = $win $shift,  q,           exec,  swaync-client --close-all
+bind = $win,         R,           exec,  killall rofi || rofi -show drun -theme ~/.config/rofi/global/rofi.rasi
+bind = SUPER,        period,      exec,  killall rofi || rofi -show emoji -emoji-format "{emoji}" -modi emoji -theme ~/.config/rofi/global/emoji
+bind = SUPER,        F1,          exec,  ~/.config/hypr/keybind
+
+# bind = $win,         P,           pseudo, # dwindle
+# bind = $win $shift,  I,           togglesplit, # dwindl
 
 # Submap modes.
+bind = $win $shift,  t,           submap,  $submap_resize 
 $submap_resize = ↔️ resize window
 
 submap = $submap_resize
-    binde = , h, resizeactive, -15 0
-    binde = , l, resizeactive, 15 0
-    binde = , k, resizeactive, 0 -15
-    binde = , j, resizeactive, 0 15
+    binde = ,  h,      resizeactive,  -15 0
+    binde = ,  l,      resizeactive,  15 0
+    binde = ,  k,      resizeactive,  0 -15
+    binde = ,  j,      resizeactive,  0 15
 
-    bind  = , escape, submap, reset
-    bind  = , return, submap, reset
+    bind  = ,  escape, submap,        reset
+    bind  = ,  return, submap,        reset
 submap = reset
-
-bind = $win $shift, t, submap, $submap_resize 
 
 # Example windowrule v2
 # windowrulev2 = float,class:^($APP_TERMINAL)$,title:^($APP_TERMINAL)$
