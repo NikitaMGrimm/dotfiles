@@ -159,7 +159,7 @@ master {
     new_is_master = false
     no_gaps_when_only = true
     orientation = top
-    mfact = 0.7
+    mfact = 0.75
 }
 
 binds {
@@ -203,12 +203,12 @@ device:roccat-roccat-kone-pro-air-dongle {
 # hyprctl keyword windowrule "workspace unset,Subl"
 # hyprctl keyword windowrule "workspace unset,Mailspring"
 # hyprctl keyword windowrule "workspace unset,firefox"
-windowrule = float,org.kde.polkit-kde-authentication-agent-1
-windowrule = float, pavucontrol
-windowrule = float, qpwgraph
-windowrule = float, Rofi
-windowrule = float, gimp
-windowrule = float, spotify
+
+windowrulev2 = float, class:org.kde.polkit-kde-authentication-agent-1
+windowrulev2 = float, class:^(pavucontrol)$
+windowrulev2 = float, class:qpwgraph
+windowrulev2 = float, class:Rofi
+windowrulev2 = float, class:^(gimp)$
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 # Backlight brightness control.
