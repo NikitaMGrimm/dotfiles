@@ -210,6 +210,8 @@ windowrule = float,org.kde.polkit-kde-authentication-agent-1
 windowrule = float, pavucontrol
 windowrule = float, qpwgraph
 windowrule = float, Rofi
+windowrule = float, flameshot
+
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 # Backlight brightness control.
 bindle = , F7, exec, light -U 1
@@ -246,6 +248,10 @@ bind = SUPER, F1, exec, ~/.config/hypr/keybind
 bind = $win $shift, q, exec, swaync-client --close-all
 
 # Screen recording / Snipping tool
+$screenshotarea = hyprctl keyword animation "fadeOut,0,0,default"; grimblast --notify copysave area; hyprctl keyword animation "fadeOut,1,4,default"
+bind = $win $shift, S, exec, $screenshotarea
+bind = , Print, exec, grimblast --notify --cursor copysave output
+bind = ALT, Print, exec, grimblast --notify --cursor copysave screen
 
 # Master layout
 bind = $win ALT_L, j, layoutmsg, orientationnext
