@@ -48,7 +48,7 @@ exec-once = $APP_BAR
 exec-once = $APP_BROWSER
 exec-once = imwheel
 exec-once = hyprpaper
-exec-once = /bin/sleep 10; systemctl --user start easyeffects-user.service
+exec-once = /bin/sleep 10; /usr/bin/easyeffects --gapplication-service
 
 # Source a file (multi-file configs)
 # source = ~/.config/hypr/myColors.conf
@@ -131,6 +131,8 @@ decoration {
     shadow_range = 4
     shadow_render_power = 2
     col.shadow = 0x66000000
+      
+    blurls = gtk-layer-shell
 }
 
 animations {
