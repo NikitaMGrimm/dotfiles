@@ -115,8 +115,8 @@ decoration {
     multisample_edges = true
 
     blur = true
-    blur_size = 3
-    blur_passes = 3
+    blur_size = 2
+    blur_passes = 2
     blur_new_optimizations = true # Disable if you use animated wallpaper
 
     dim_inactive = true
@@ -128,8 +128,6 @@ decoration {
     shadow_range = 4
     shadow_render_power = 2
     col.shadow = 0x66000000
-      
-    blurls = gtk-layer-shell
 }
 
 animations {
@@ -158,8 +156,8 @@ master {
     # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
     new_is_master = false
     no_gaps_when_only = true
-    orientation = top
-    mfact = 0.75
+    orientation = left 
+    mfact = 0.7
 }
 
 binds {
@@ -179,8 +177,6 @@ device:roccat-roccat-kone-pro-air-dongle {
 }
 {{- end }}
 
-# Example windowrule v1
-# windowrule = float, ^($APP_TERMINAL)$
 # Example windowrule v2
 # windowrulev2 = float,class:^($APP_TERMINAL)$,title:^($APP_TERMINAL)$
 # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
@@ -210,7 +206,8 @@ windowrulev2 = float, class:qpwgraph
 windowrulev2 = float, class:Rofi
 windowrulev2 = float, class:^(gimp)$
 
-# See https://wiki.hyprland.org/Configuring/Keywords/ for more
+layerrule = blur, ^(gtk-layer-shell)$
+
 # Backlight brightness control.
 bindle = , F7, exec, light -U 1
 bindle = , F8, exec, light -A 1
