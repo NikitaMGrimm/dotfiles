@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+
+import sys
+import subprocess
+import shlex
+import shutil
+
+if len(sys.argv) < 3 or len(sys.argv) > 4:
+    print("Usage: intersect-output [shell-run-command] script1 script2")
+    sys.exit(1)
+
+# Determine the default shell to use
+zsh_path = shutil.which('zsh')
+bash_path = shutil.which('bash')
+
+if zsh_path:
+    default_shell = f'{zsh_path} -c'
+else:
+    default_shell = f'{bash_path} -c'
+
+# Use the default shell if no command is specified
+if len(sys.argv) == 3:
+    command = default_shell
+else:
+    command = sys.argv[1]
+
+script1 = sys.argv[-2]
+script2 = sys.argv[-1]
+
+try:
+    # Split the command into separate arguments
+    cmd_args = shlex.split(command)
+
+    # Run the first script and capture its output
+    proc1 = subprocess.Popen(cmd_args + [script1], stdout=subprocess.PIPE)
+    output1 = [line.decode().strip() for line in proc1.stdout]
+
+    # Run the second script and capture its output
+    proc2 = subprocess.Popen(cmd_args + [script2], stdout=subprocess.PIPE)
+    output2 = [line.decode().strip() for line in proc2.stdout]
+
+    # Find the common lines in the output
+    common_lines = set(output1).intersection(output2)
+
+    # Print the common lines in the order they appear in script1
+    for line in output1:
+        if line.strip() in common_lines:
+            print(line.strip())
+
+except OSError as e:
+    print("Error: {}".format(e))
+    sys.exit(1)
+

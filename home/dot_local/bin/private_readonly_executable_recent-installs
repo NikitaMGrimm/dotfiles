@@ -1,0 +1,5 @@
+#!/bin/bash
+
+intersect-output \
+  'awk "/\[ALPM\] installed/ { print \$(NF-1) }" /var/log/pacman.log' \
+  'yay -Qqe' \
