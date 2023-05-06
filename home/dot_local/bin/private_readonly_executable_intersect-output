@@ -15,20 +15,27 @@ args = parser.parse_args()
 try:
     # Run the first script and capture its output
     proc1 = subprocess.run([args.shell, '-c', args.script1], capture_output=True, text=True)
+    if proc1.returncode != 0:
+        print(f"Error running script1: {proc1.stderr.strip()}")
+        exit(1)
     output1 = proc1.stdout.strip().splitlines()
 
     # Run the second script and capture its output
     proc2 = subprocess.run([args.shell, '-c', args.script2], capture_output=True, text=True)
+    if proc2.returncode != 0:
+        print(f"Error running script2: {proc2.stderr.strip()}")
+        exit(1)
     output2 = proc2.stdout.strip().splitlines()
 
     # Find the common lines in the output
-    common_lines = set(output1).intersection(output2)
+    common_lines = set(tuple(line.split()) for line in output1).intersection(tuple(line.split()) for line in output2)
 
     # Print the common lines in the order they appear in script1
     for line in output1:
-        if line.strip() in common_lines:
-            print(line.strip())
+        if tuple(line.split()) in common_lines:
+            print(line)
 
 except subprocess.CalledProcessError as e:
     print(f"Error: {e}")
+    exit(1)
 
