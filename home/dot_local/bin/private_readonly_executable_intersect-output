@@ -5,28 +5,30 @@ import subprocess
 import shlex
 import shutil
 import argparse
+import os
 
 parser = argparse.ArgumentParser(description='Find common lines between the output of two scripts')
 parser.add_argument('script1', help='the first script')
 parser.add_argument('script2', help='the second script')
-parser.add_argument('--shell', default=None, help='the shell command to use (default: zsh if available, otherwise bash)')
+parser.add_argument('--shell', default=None, help='the shell command to use (default: $SHELL if set, otherwise zsh if available, otherwise bash)')
 
 args = parser.parse_args()
 
 # Determine the default shell to use
-zsh_path = shutil.which('zsh')
-bash_path = shutil.which('bash')
-
-if zsh_path:
-    default_shell = f'{zsh_path} -c'
+if args.shell:
+    default_shell = args.shell
+elif 'SHELL' in os.environ:
+    default_shell = os.environ['SHELL']
+elif shutil.which('zsh'):
+    default_shell = 'zsh'
 else:
-    default_shell = f'{bash_path} -c'
+    default_shell = 'bash'
 
-# Use the default shell if no command is specified
-if args.shell is None:
-    command = default_shell
+# Build the shell command to use
+if ' ' in default_shell:
+    command = f'"{default_shell}" -c'
 else:
-    command = args.shell
+    command = f'{default_shell} -c'
 
 try:
     # Split the command into separate arguments
