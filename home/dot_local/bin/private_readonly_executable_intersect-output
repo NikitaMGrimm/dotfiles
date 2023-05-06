@@ -4,10 +4,14 @@ import sys
 import subprocess
 import shlex
 import shutil
+import argparse
 
-if len(sys.argv) < 3 or len(sys.argv) > 4:
-    print("Usage: intersect-output [shell-run-command] script1 script2")
-    sys.exit(1)
+parser = argparse.ArgumentParser(description='Find common lines between the output of two scripts')
+parser.add_argument('script1', help='the first script')
+parser.add_argument('script2', help='the second script')
+parser.add_argument('--shell', default=None, help='the shell command to use (default: zsh if available, otherwise bash)')
+
+args = parser.parse_args()
 
 # Determine the default shell to use
 zsh_path = shutil.which('zsh')
@@ -19,24 +23,21 @@ else:
     default_shell = f'{bash_path} -c'
 
 # Use the default shell if no command is specified
-if len(sys.argv) == 3:
+if args.shell is None:
     command = default_shell
 else:
-    command = sys.argv[1]
-
-script1 = sys.argv[-2]
-script2 = sys.argv[-1]
+    command = args.shell
 
 try:
     # Split the command into separate arguments
     cmd_args = shlex.split(command)
 
     # Run the first script and capture its output
-    proc1 = subprocess.Popen(cmd_args + [script1], stdout=subprocess.PIPE)
+    proc1 = subprocess.Popen(cmd_args + [args.script1], stdout=subprocess.PIPE)
     output1 = [line.decode().strip() for line in proc1.stdout]
 
     # Run the second script and capture its output
-    proc2 = subprocess.Popen(cmd_args + [script2], stdout=subprocess.PIPE)
+    proc2 = subprocess.Popen(cmd_args + [args.script2], stdout=subprocess.PIPE)
     output2 = [line.decode().strip() for line in proc2.stdout]
 
     # Find the common lines in the output
