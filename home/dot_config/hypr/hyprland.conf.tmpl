@@ -44,14 +44,13 @@ workspace = 6,  monitor:DP-1,   default:true
 workspace = 7,  monitor:DP-1
 workspace = 8,  monitor:DP-1
 workspace = 9,  monitor:DP-1
-workspace = 0,  monitor:DP-1
+workspace = 10,  monitor:DP-1
 
 # Monitor setup.
 monitor = ,  preferred,  auto,  1 # Add mirror,[NAME] to mirror the monitor.
-# Laptop specific config. 
+
 {{- if eq .chezmoi.hostname "vito" }}
 exec-once = /bin/sleep 10; rog-control-center
-
 monitor =                        eDP-1,                    2560x1440@165,  0x0,   1
 monitor = desc:Acer Technologies XV272U KV 91011EB954203,  2560x1440@170,  auto,  1
 
@@ -270,7 +269,7 @@ bind = $win,         D,           killactive,
 bind = $win $shift,  D,           exit,
 bind = $win,         slash,       exec,       $APP_TERMINAL zsh -c "ranger"
 bind = $win $shift,  q,           exec,       swaync-client --close-all
-bind = $win,         R,           exec,       killall rofi || rofi -show drun -theme ~/.config/rofi/global/rofi.rasi
+bind = $win,         R,           exec,       killall rofi || rofi -show drun -theme ~/.config/rofi/global/rofi.rasi -drun-match-fields name,generic,categories,comment -matching fuzzy -tokenize -threads 1 
 bind = SUPER,        period,      exec,       killall rofi || rofi -show emoji -emoji-format "{emoji}" -modi emoji -theme ~/.config/rofi/global/emoji
 bind = SUPER,        F1,          exec,       ~/.config/hypr/keybind
 
