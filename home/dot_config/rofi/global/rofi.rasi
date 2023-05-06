@@ -4,7 +4,7 @@ configuration {
     show-icons: true;
     icon-theme: "Nordzy";
     fullscreen: false;
-    threads: 0;
+    threads: 1;
     matching: "fuzzy";
     scroll-method: 0;
     monitor: "primary";
@@ -148,7 +148,7 @@ element alternate.active {
 }
 
 element selected {
-    background-color: #403d5220;
+    background-color: #403d5299;
     text-color: @foreground;
 }
 

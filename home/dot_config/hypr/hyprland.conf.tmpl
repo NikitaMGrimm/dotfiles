@@ -269,7 +269,7 @@ bind = $win,         D,           killactive,
 bind = $win $shift,  D,           exit,
 bind = $win,         slash,       exec,       $APP_TERMINAL zsh -c "ranger"
 bind = $win $shift,  q,           exec,       swaync-client --close-all
-bind = $win,         R,           exec,       killall rofi || rofi -show drun -theme ~/.config/rofi/global/rofi.rasi -drun-match-fields name,generic,categories,comment -matching fuzzy -tokenize -threads 1 
+bind = $win,         R,           exec,       killall rofi || rofi -show drun -theme ~/.config/rofi/global/rofi.rasi -drun-match-fields name,generic,categories,comment -tokenize 
 bind = SUPER,        period,      exec,       killall rofi || rofi -show emoji -emoji-format "{emoji}" -modi emoji -theme ~/.config/rofi/global/emoji
 bind = SUPER,        F1,          exec,       ~/.config/hypr/keybind
 
