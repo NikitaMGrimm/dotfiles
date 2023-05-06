@@ -9,6 +9,7 @@ parser = argparse.ArgumentParser(description='Find common lines between the outp
 parser.add_argument('script1', help='the first script')
 parser.add_argument('script2', help='the second script')
 parser.add_argument('--shell', default=os.getenv('SHELL', shutil.which('zsh') or 'bash'), help='the shell command to use (default: $SHELL if set, otherwise zsh if available, otherwise bash)')
+parser.add_argument('--case', action='store_true', help='make the comparison case-insensitive')
 
 args = parser.parse_args()
 
@@ -18,21 +19,27 @@ try:
     if proc1.returncode != 0:
         print(f"Error running script1: {proc1.stderr.strip()}")
         exit(1)
-    output1 = proc1.stdout.strip().splitlines()
+    proc1out = proc1.stdout.strip().splitlines()
+    output1 = set(proc1out)
 
     # Run the second script and capture its output
     proc2 = subprocess.run([args.shell, '-c', args.script2], capture_output=True, text=True)
     if proc2.returncode != 0:
         print(f"Error running script2: {proc2.stderr.strip()}")
         exit(1)
-    output2 = proc2.stdout.strip().splitlines()
+    output2 = set(proc2.stdout.strip().splitlines())
 
     # Find the common lines in the output
-    common_lines = set(tuple(line.split()) for line in output1).intersection(tuple(line.split()) for line in output2)
+    if args.case:
+        common_lines = {line.lower() for line in output1}.intersection({line.lower() for line in output2})
+    else:
+        common_lines = output1.intersection(output2)
 
+    output = []
     # Print the common lines in the order they appear in script1
-    for line in output1:
-        if tuple(line.split()) in common_lines:
+    for line in proc1out:
+        if line in common_lines and line not in output:
+            output.append(line)
             print(line)
 
 except subprocess.CalledProcessError as e:
