@@ -1,46 +1,25 @@
 #!/usr/bin/env python3
 
-import sys
-import subprocess
-import shlex
-import shutil
 import argparse
 import os
+import subprocess
+import shutil
 
 parser = argparse.ArgumentParser(description='Find common lines between the output of two scripts')
 parser.add_argument('script1', help='the first script')
 parser.add_argument('script2', help='the second script')
-parser.add_argument('--shell', default=None, help='the shell command to use (default: $SHELL if set, otherwise zsh if available, otherwise bash)')
+parser.add_argument('--shell', default=os.getenv('SHELL', shutil.which('zsh') or 'bash'), help='the shell command to use (default: $SHELL if set, otherwise zsh if available, otherwise bash)')
 
 args = parser.parse_args()
 
-# Determine the default shell to use
-if args.shell:
-    default_shell = args.shell
-elif 'SHELL' in os.environ:
-    default_shell = os.environ['SHELL']
-elif shutil.which('zsh'):
-    default_shell = 'zsh'
-else:
-    default_shell = 'bash'
-
-# Build the shell command to use
-if ' ' in default_shell:
-    command = f'"{default_shell}" -c'
-else:
-    command = f'{default_shell} -c'
-
 try:
-    # Split the command into separate arguments
-    cmd_args = shlex.split(command)
-
     # Run the first script and capture its output
-    proc1 = subprocess.Popen(cmd_args + [args.script1], stdout=subprocess.PIPE)
-    output1 = [line.decode().strip() for line in proc1.stdout]
+    proc1 = subprocess.run([args.shell, '-c', args.script1], capture_output=True, text=True)
+    output1 = proc1.stdout.strip().splitlines()
 
     # Run the second script and capture its output
-    proc2 = subprocess.Popen(cmd_args + [args.script2], stdout=subprocess.PIPE)
-    output2 = [line.decode().strip() for line in proc2.stdout]
+    proc2 = subprocess.run([args.shell, '-c', args.script2], capture_output=True, text=True)
+    output2 = proc2.stdout.strip().splitlines()
 
     # Find the common lines in the output
     common_lines = set(output1).intersection(output2)
@@ -50,7 +29,7 @@ try:
         if line.strip() in common_lines:
             print(line.strip())
 
-except OSError as e:
-    print("Error: {}".format(e))
-    sys.exit(1)
+except subprocess.CalledProcessError as e:
+    print(f"Error: {e}")
+
 
