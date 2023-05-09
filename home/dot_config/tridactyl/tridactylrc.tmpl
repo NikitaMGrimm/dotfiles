@@ -2,4 +2,4 @@
 set theme dark
 
 " open {{ .default_app.editor }} on insert with <C-i>
-set editorcmd kitty zsh -c "{{ .default_app.editor }} %f '+normal!%lGzv%c|'"
+set editorcmd {{ .default_app.terminal }} {{ .default_app.shell }} -c "{{ .default_app.editor }} %f '+normal!%lGzv%c|'"
