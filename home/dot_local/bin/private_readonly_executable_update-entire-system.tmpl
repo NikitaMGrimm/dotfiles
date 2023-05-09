@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Needs yay, reflector, curl, user with sudo
+# Needs {{ .default_app.aur_helper }}, reflector, curl, user with sudo
 PACMAN_STATIC="https://pkgbuild.com/~morganamilo/pacman-static/x86_64/bin/pacman-static"
 
 echo "First, go to https://archlinux.org/news/ to check if there is something you have to do first!"
@@ -41,11 +41,11 @@ sudo ./pacman-static -Suu
 
 # TODO? Idk if needed but before running reflector, maybe get the default mirror list.
 
-echo "Upgrading the system again with yay to update AUR..."
-yay
+echo "Upgrading the system again with {{ .default_app.aur_helper }} to update AUR..."
+{{ .default_app.aur_helper }}
 
 echo "Removing unneeded packages..."
-yay -Qqd | yay -Rsu -
+{{ .default_app.aur_helper }} -Qqd | {{ .default_app.aur_helper }} -Rsu -
 
 echo "Uninstalling pacman-static..."
 rm -rf /tmp/pacman-static-build
