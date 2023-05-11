@@ -37,11 +37,13 @@ plugins+=(zsh-autosuggestions)
 plugins+=(fast-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
+source ~/.aliasrc
+source ~/.functionrc
+
 # Ranger configuration
 export VISUAL=$EDITOR
 if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
 
-source ~/.aliasrc
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 source /usr/share/nvm/nvm.sh
 source /usr/share/nvm/bash_completion
