@@ -3,7 +3,6 @@ alias {pacdeldep,deletedependencies}="{{ .default_app.aur_helper }} -Qqd | {{ .d
 alias {pacrecent,recentinstalls}="recent-installs"
 alias chezpush="chezmoi git add .; chezmoi git commit; chezmoi git push"
 alias {gimp,Gimp}="gimp-2.99"
-alias cp=”cp —reflink=auto”
 alias {reload,execzsh}="clear; exec zsh"
 alias {btrfsl,btrfslist,listbtrfs}="btrfs subvolume list ."
 alias {mountr,mountroot,btrfsmount}="mount -o subvolid=5 -L archroot /mnt; cd /mnt; ls -lha"
