@@ -112,7 +112,7 @@ input {
 
     repeat_delay = 300 
     repeat_rate  = 60
-    follow_mouse = 0
+    follow_mouse = 2
 
     touchpad {
         natural_scroll          = true
@@ -180,6 +180,7 @@ windowrulev2 = float,  class:^(origin|Origin)$
 windowrulev2 = float,  title:^(ProtonUp)$
 windowrulev2 = float,  class:net.davidotek.pupgui2, title:(About)
 windowrulev2 = float,  class:^(Steam)$
+windowrulev2 = float,  class:^(mpv)$
 
 windowrulev2 = opacity 0.80 0.80,class:^(Steam)$
 layerrule = blur,  ^(gtk-layer-shell)$
@@ -269,6 +270,7 @@ $screenshotarea = hyprctl keyword animation "fadeOut,0,0,default"; grimblast --n
 bind = $win $shift,  S,           exec,       $screenshotarea
 bind = ,             Print,       exec,       grimblast --notify --cursor copysave output
 bind = ALT,          Print,       exec,       grimblast --notify --cursor copysave screen
+# bind = $win $shift,  R,           exec,       wl-screenrec -g "$(slurp)"
 # bind = $win,   Print,  exec,  grim -g "$(slurp)" - | swappy -f - # screenshot snip
 # bind = ,       Print,  exec,  grim ~/Pictures/Screenshots/$(date +'%y%m%d_%Hh%Mm%Ss_screenshot.png') # print current screen
 
