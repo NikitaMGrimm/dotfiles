@@ -93,8 +93,8 @@ master {
 }
 
 dwindle {
-    pseudotile     = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-    preserve_split = yes
+    pseudotile     = true # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    preserve_split = true
 }
 
 binds {
@@ -122,6 +122,7 @@ input {
     }
 
     sensitivity = -0.1 # -1.0 - 1.0, 0 means no modification.
+    force_no_accel = false # false for touchpad accel
 }
 
 gestures {
