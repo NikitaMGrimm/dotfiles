@@ -171,15 +171,17 @@ animations {
 }
 
 windowrulev2 = float,  class:org.kde.polkit-kde-authentication-agent-1
-windowrulev2 = float,  class:pavucontrol
-windowrulev2 = float,  class:qpwgraph
-windowrulev2 = float,  class:Rofi
+
+windowrulev2 = float,  class:^(pavucontrol)$
+windowrulev2 = float,  class:^(qpwgraph)$
+windowrulev2 = float,  class:^(Rofi)$
 windowrulev2 = float,  class:^(gimp|Gimp)
-windowrulev2 = float,  class:^(origin|Origin)
-windowrulev2 = float,  title:^(ProtonUp)
+windowrulev2 = float,  class:^(origin|Origin)$
+windowrulev2 = float,  title:^(ProtonUp)$
 windowrulev2 = float,  class:net.davidotek.pupgui2, title:(About)
 windowrulev2 = float,  class:^(Steam)$
 
+windowrulev2 = opacity 0.80 0.80,class:^(Steam)$
 layerrule = blur,  ^(gtk-layer-shell)$
 
 # Backlight brightness control.
@@ -267,6 +269,12 @@ $screenshotarea = hyprctl keyword animation "fadeOut,0,0,default"; grimblast --n
 bind = $win $shift,  S,           exec,       $screenshotarea
 bind = ,             Print,       exec,       grimblast --notify --cursor copysave output
 bind = ALT,          Print,       exec,       grimblast --notify --cursor copysave screen
+# bind = $win,   Print,  exec,  grim -g "$(slurp)" - | swappy -f - # screenshot snip
+# bind = ,       Print,  exec,  grim ~/Pictures/Screenshots/$(date +'%y%m%d_%Hh%Mm%Ss_screenshot.png') # print current screen
+
+# example pass, make for discord mute, etc... 
+# bind = $CONTROL_SHIFT, P, pass, ^(com\.obsproject\.Studio)$ # start/stop obs screen recording
+
 
 # Application shortcuts 
 bind = $win,         Q,           exec,       $APP_TERMINAL
