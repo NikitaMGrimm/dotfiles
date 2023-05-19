@@ -16,6 +16,8 @@ chmod +x pacman-static
 echo "Updating CA certificates."
 sudo update-ca-trust
 
+sudo rm -r /var/lib/pacman/sync/
+
 echo "Updating database.."
 echo "  Removing old database..."
 sudo rm /var/lib/pacman/sync/*
