@@ -59,6 +59,8 @@ device:roccat-roccat-kone-pro-air-dongle {
 }
 {{- end }}
 
+monitor = , preferred, auto, 1
+
 misc {
     vrr                     = 1
     vfr                     = true
@@ -185,6 +187,11 @@ windowrulev2 = float,  class:^(mpv)
 windowrulev2 = float,  class:moe.launcher.an-anime-game-launcher
 
 windowrulev2 = opacity 0.80 0.80,class:^(steam|Steam)$
+
+windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
+windowrulev2 = noanim,class:^(xwaylandvideobridge)$
+windowrulev2 = nofocus,class:^(xwaylandvideobridge)$
+windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
 layerrule = blur,  ^(gtk-layer-shell)$
 
 # Backlight brightness control.
