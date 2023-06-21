@@ -290,7 +290,7 @@ bind = ALT,          Print,       exec,       grimblast --notify --cursor copysa
 # Application shortcuts 
 bind = $win,         Q,           exec,       $APP_TERMINAL
 bindle = $win,         D,           killactive, 
-bind = $win $shift,  D,           exit,
+bind = $win $shift,  0,           exit,
 bind = $win,         slash,       exec,       $APP_TERMINAL zsh -c "ranger"
 bind = $win $shift,  q,           exec,       swaync-client --close-all
 bind = $win,         R,           exec,       killall rofi || rofi -show drun -theme ~/.config/rofi/global/rofi.rasi -drun-match-fields name -tokenize
