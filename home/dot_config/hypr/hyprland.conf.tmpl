@@ -140,11 +140,13 @@ gestures {
 decoration {
     rounding          = 7
     multisample_edges = true
-
-    blur                   = true
-    blur_size              = 2
-    blur_passes            = 2
-    blur_new_optimizations = true # Disable if you use animated wallpaper
+    
+    blur {
+        enabled            = true
+        size               = 2 
+        passes             = 2 
+        new_optimizations  = true
+    }
 
     dim_inactive         = true
     dim_strength         = 0.15
