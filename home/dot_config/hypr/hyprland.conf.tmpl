@@ -30,6 +30,7 @@ exec-once = $APP_BROWSER
 exec-once = imwheel
 exec-once = hyprpaper
 exec-once = /bin/sleep 10; /usr/bin/easyeffects --gapplication-service
+exec-once = /bin/sleep 5; {{ .chezmoi.homeDir }}/.local/bin/pipfloat
 
 # source = ~/.config/hypr/myColors.conf
 
@@ -187,6 +188,12 @@ windowrulev2 = float,  class:net.davidotek.pupgui2, title:(About)
 windowrulev2 = float,  class:^(steam|Steam)
 windowrulev2 = float,  class:^(mpv)
 windowrulev2 = float,  class:moe.launcher.an-anime-game-launcher
+
+windowrulev2 = float, class:(firefox),title:(Picture-in-Picture)
+windowrulev2 = pin, class:(firefox),title:(Picture-in-Picture)
+windowrulev2 = nofullscreenrequest, class:(firefox)
+windowrulev2 = nomaximizerequest, class:(firefox)
+windowrulev2 = pin, class:(firefox)
 
 windowrulev2 = opacity 0.80 0.80,class:^(steam|Steam)$
 
