@@ -76,6 +76,8 @@ misc {
 }
 
 general {
+    allow_tearing = true # Tearing master toggle
+
     border_size         = 2
     col.active_border   = rgb(777777)
     col.inactive_border = rgb(222222)
@@ -196,7 +198,8 @@ windowrulev2 = nomaximizerequest, class:(firefox)
 windowrulev2 = pin, class:(firefox)
 
 # Test tearing
-# windowrulev2 = immediate, class:^(Minecraft|minecraft)$ # Idk need to look at this later 
+# windowrulev2 = immediate, class:^(Minecraft|minecraft)$
+# windowrulev2 = immediate, class:^(cs2|CS2|csgo)$
 
 windowrulev2 = opacity 0.80 0.80,class:^(steam|Steam)$
 
