@@ -21,7 +21,7 @@ env = QT_QPA_PLATFORMTHEME,                 qt5ct
 # Needed to enable tearing for applications in fullscreen using immediate window rule
 env = WLR_DRM_NO_ATOMIC,                    1
 # Execute on start.
-exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+# exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec-once = xdg-desktop-portal-starter
 exec-once = swaync 
 exec-once = /usr/lib/polkit-kde-authentication-agent-1
@@ -64,7 +64,7 @@ device:roccat-roccat-kone-pro-air-dongle {
 monitor = , preferred, auto, 1
 
 misc {
-    vrr                     = 0
+    vrr                     = 1
     vfr                     = true
     disable_hyprland_logo   = true
     disable_autoreload      = true
