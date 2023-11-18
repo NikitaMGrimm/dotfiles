@@ -1,10 +1,10 @@
 # Enable back/forward thumb buttons everywhere.
-
-".*"
-None, Thumb1, Alt_L|Left
-None, Thumb2, Alt_L|Right
-
-# Speed up scrolling for discord
-"^discord$"
-    None, Up, Button4, 4
-    None, Down, Button5, 4
+#
+# ".*"
+# None, Thumb1, Alt_L|Left
+# None, Thumb2, Alt_L|Right
+#
+# # Speed up scrolling for discord
+# "^discord$"
+#     None, Up, Button4, 4
+#     None, Down, Button5, 4
