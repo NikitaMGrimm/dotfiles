@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+# File to store the variables
+FILE="$HOME/Documents/Notes/shopcount"
+
+# Initialize or read the variables
+if [[ ! -f $FILE ]]; then
+    echo "shop=0" > $FILE
+    echo "total=0" >> $FILE
+fi
+source $FILE
+
+# Function to update the file with current variable values
+update_file() {
+    echo "shop=$shop" > $FILE
+    echo "total=$total" >> $FILE
+}
+
+# Command processing
+case $1 in
+    +([0-9]*)) # Increment shop by the given number and total by 6
+        increment=$1
+        shop=$((shop + increment))
+        total=$((total + 5))
+        update_file
+        ;;
+    "print") # Print the current values of shop and total
+        echo "Shop: $shop"
+        echo "Total: $total"
+        ;;
+    *) # Default case if the input doesn't match expected patterns
+        echo "Invalid command. Use 'shop +n' to increment or 'shop print' to display values."
+        ;;
+esac
