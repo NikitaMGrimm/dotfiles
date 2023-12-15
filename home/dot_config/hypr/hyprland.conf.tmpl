@@ -294,6 +294,9 @@ bindm = $win,        mouse:273,   resizewindow
 # Screen recording / Snipping tool
 $screenshotarea = hyprctl keyword animation "fadeOut,0,0,default"; grimblast --notify copysave area; hyprctl keyword animation "fadeOut,1,4,default"
 bind = $win $shift,  S,           exec,       $screenshotarea
+bind = $win $shift,  W,           exec,       [workspace special silent;float;noanim] $APP_TERMINAL zsh -c "(upload-latest-screenshot &) ; sleep 3; kill -9 $$"
+
+# bind = $win $shift,  W,           execr,      upload-latest-screenshot
 bind = ,             Print,       exec,       grimblast --notify --cursor copysave output
 bind = ALT,          Print,       exec,       grimblast --notify --cursor copysave screen
 # bind = $win $shift,  R,           exec,       wl-screenrec -g "$(slurp)"
