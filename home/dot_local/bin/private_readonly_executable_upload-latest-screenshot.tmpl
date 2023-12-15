@@ -1,0 +1,13 @@
+#!/bin/bash
+
+screenshot_dir="{{ .chezmoi.homeDir }}/Pictures/Screenshots"
+
+newest_image=$(find "$screenshot_dir" -type f -printf "%T@ %p\n" | sort -n | tail -1 | cut -d' ' -f2-)
+
+if [ -z "$newest_image" ]; then
+    echo "No images found in $screenshot_dir"
+    exit 1
+fi
+
+imgur-screenshot "$newest_image"
+

@@ -54,7 +54,7 @@ monitor = ,  preferred,  auto,  1 # Add mirror,[NAME] to mirror the monitor.
 
 {{- if eq .chezmoi.hostname "vito" }}
 exec-once = /bin/sleep 10; rog-control-center
-monitor =                        eDP-1,                    2560x1440@165,  0x0,   1
+monitor =                        eDP-1,                    2560x1440@165,  auto,   1
 monitor = desc:Acer Technologies XV272U KV 91011EB954203,  2560x1440@170,  auto,  1
 
 device:roccat-roccat-kone-pro-air-dongle {
