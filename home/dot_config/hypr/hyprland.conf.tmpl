@@ -33,7 +33,8 @@ exec-once = imwheel
 exec-once = hyprpaper
 exec-once = /bin/sleep 10; /usr/bin/easyeffects --gapplication-service
 exec-once = /bin/sleep 5; {{ .chezmoi.homeDir }}/.local/bin/pipfloat
-
+# Hyprland plugins loaded. Update using 'hyprpm update'
+exec-once = hyprpm reload -n
 # source = ~/.config/hypr/myColors.conf
 
 # Default workspaces.
