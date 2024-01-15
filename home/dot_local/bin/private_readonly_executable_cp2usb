@@ -1,0 +1,23 @@
+#!/bin/bash
+
+mv2usb() {
+    local mountpath=$1
+    local filepath=$2
+    local filename=$(basename "$filepath")
+
+    if [[ ! "$mountpath" =~ ^/ ]]; then
+        mountpath="/dev/$mountpath"
+    fi
+
+    mount "$mountpath" /mnt
+
+    mkdir -p /mnt/Storage
+
+    rsync -ah --progress "$filepath" "/mnt/Storage/$filename"
+
+    sync
+    umount "$mountpath"
+}
+
+mv2usb "$1" "$2"
+
