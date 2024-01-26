@@ -9,3 +9,4 @@ alias {mountr,mountroot,btrfsmount}="mount -o subvolid=5 -L archroot /mnt; cd /m
 alias {driveinfo,showdrives,fdiskall}="fdisk -l ; echo \\n; lsblk; echo \\n; df -h; echo \\n;findmnt --fstab --target /boot"
 alias shop="shop_manager"
 alias memer="python $HOME/Documents/Repositories/word2vec/memer.py"
+alias vpnprivado="openvpn --cd /etc/openvpn --config ./privadovpn/ber-001.default.ovpn --auth-user-pass ./privadovpn/pswd_file1.conf"
