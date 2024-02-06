@@ -47,7 +47,7 @@ function shaders_exist(shader_paths)
     return true
 end
 
-function toggle_anime_shaders()
+function toggle_shaders_conditionally()
     local width, height = mp.get_property_number("width"), mp.get_property_number("height")
     local selected_set = nil
 
@@ -69,5 +69,5 @@ function toggle_anime_shaders()
     end
 end
 
-mp.add_key_binding(nil, "toggle_anime_shaders", toggle_anime_shaders)
+mp.add_key_binding(nil, "toggle_shaders_conditionally", toggle_shaders_conditionally)
 
