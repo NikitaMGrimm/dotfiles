@@ -10,4 +10,4 @@ alias {driveinfo,showdrives,fdiskall}="fdisk -l ; echo \\n; lsblk; echo \\n; df 
 alias shop="shop_manager"
 alias memer="python $HOME/Documents/Repositories/word2vec/memer.py"
 alias vpnprivado="openvpn --cd /etc/openvpn --config ./privadovpn/ber-001.default.ovpn --auth-user-pass ./privadovpn/pswd_file1.conf"
-alias fman="compgen -c | fzf | xargs man"
+alias fman="compgen -c | fzf --preview \"man {}\" | xargs man"
