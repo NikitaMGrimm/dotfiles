@@ -1804,7 +1804,7 @@ map kitty_mod+o pass_selection_to_program
 #::  will be passed as a command line argument to the program. For
 #::  example::
 
-#::      map kitty_mod+o pass_selection_to_program firefox
+#::      map kitty_mod+o pass_selection_to_program {{ .default_app.browser }}
 
 #::  You can pass the current selection to a terminal program running
 #::  in a new kitty window, by using the @selection placeholder::

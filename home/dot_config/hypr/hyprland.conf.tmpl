@@ -193,11 +193,11 @@ windowrulev2 = float,  class:net.davidotek.pupgui2, title:(About)
 windowrulev2 = float,  class:^(mpv)
 windowrulev2 = float,  class:moe.launcher.an-anime-game-launcher
 
-windowrulev2 = float, class:(firefox),title:(Picture-in-Picture)
-windowrulev2 = pin, class:(firefox),title:(Picture-in-Picture)
-# windowrulev2 = nofullscreenrequest, class:(firefox)
-# windowrulev2 = nomaximizerequest, class:(firefox)
-# windowrulev2 = pin, class:(firefox)
+windowrulev2 = float, class:({{ .default_app.browser }}),title:(Picture-in-Picture)
+windowrulev2 = pin, class:({{ .default_app.browser }}),title:(Picture-in-Picture)
+# windowrulev2 = nofullscreenrequest, class:({{ .default_app.browser }})
+# windowrulev2 = nomaximizerequest, class:({{ .default_app.browser }})
+# windowrulev2 = pin, class:({{ .default_app.browser }})
 
 # Test tearing
 windowrulev2 = immediate, class:^(Minecraft|minecraft)$
@@ -341,12 +341,12 @@ submap = reset
 # windowrule=workspace 1 silent,kitty
 # windowrule=workspace 1 silent,Subl
 # windowrule=workspace 3 silent,Mailspring
-# windowrule=workspace 4 silent,firefox
+# windowrule=workspace 4 silent,{{ .default_app.browser }}
 # [...]
 # exec-once=kitty
 # exec-once=subl
 # exec-once=mailspring
-# exec-once=firefox
+# exec-once={{ .default_app.browser }}
 # [...]
 # exec-once=cleanup_after_start.sh
 #
@@ -356,4 +356,4 @@ submap = reset
 # hyprctl keyword windowrule "workspace unset,kitty"
 # hyprctl keyword windowrule "workspace unset,Subl"
 # hyprctl keyword windowrule "workspace unset,Mailspring"
-# hyprctl keyword windowrule "workspace unset,firefox"
+# hyprctl keyword windowrule "workspace unset,{{ .default_app.browser }}"
