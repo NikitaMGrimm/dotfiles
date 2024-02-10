@@ -1,1 +1,3 @@
 set bell-style visible
+set colored-stats on
+set show-all-if-ambiguous on
