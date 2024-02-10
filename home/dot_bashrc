@@ -5,7 +5,9 @@
 # If not running interactively, don't do anything.
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+# Source stuff
+source ~/.aliasrc
+source ~/.functionrc
+
 PS1='[\u@\h \W]\$ '
 MESA_WHICH_LLVM=1
