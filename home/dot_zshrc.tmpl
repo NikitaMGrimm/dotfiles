@@ -42,13 +42,11 @@ if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
 
 source $ZSH/oh-my-zsh.sh
 source ~/.bashrc
-
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 source /usr/share/nvm/nvm.sh
 source /usr/share/nvm/bash_completion
 source /usr/share/nvm/install-nvm-exec
 source /usr/share/nvm/init-nvm.sh
-
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
