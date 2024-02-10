@@ -40,6 +40,7 @@
   br = branch -av 
   # Show the current branch name (useful for shell prompts) 
   brname = !git branch | grep "^*" | awk '{ print $2 }' 
+  lg = !git log --oneline --decorate --color | fzf --ansi --preview 'git show $(echo {} | cut -d" " -f1)'
 
 [web]
   browser = {{ .default_app.browser }}
