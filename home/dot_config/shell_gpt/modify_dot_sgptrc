@@ -1,2 +1,9 @@
-{{- /* chezmoi:modify-template */ -}}
-{{- fromIni .chezmoi.stdin | setValueAtPath "DEFAULT_MODEL" "gpt-3.5-turbo" | toIni -}}
+{{ /* chezmoi:modify-template */ }}
+{{ $toml_file := (
+    fromIni .chezmoi.stdin | 
+    setValueAtPath "DEFAULT_MODEL" "gpt-3.5-turbo" | 
+    toToml |
+    replaceAllRegex "[ ']" ""
+)}}
+
+{{- $toml_file -}}
