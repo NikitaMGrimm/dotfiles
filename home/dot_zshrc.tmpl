@@ -36,12 +36,17 @@ plugins+=(zsh-vi-mode)
 plugins+=(zsh-autosuggestions)
 plugins+=(fast-syntax-highlighting)
 
+# Shell-GPT integration ZSH v0.2, function is inside functionrc
+zle -N _sgpt_zsh
+bindkey ^l _sgpt_zsh
+
 # Ranger configuration
 export VISUAL=$EDITOR
 if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
 
 source $ZSH/oh-my-zsh.sh
 source ~/.bashrc
+source ~/.functionrc
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 source /usr/share/nvm/nvm.sh
 source /usr/share/nvm/bash_completion
