@@ -1,7 +1,8 @@
 {{ /* chezmoi:modify-template */ }}
 {{ $toml_file := (
     fromIni .chezmoi.stdin | 
-    setValueAtPath "DEFAULT_MODEL" "gpt-3.5-turbo" | 
+    setValueAtPath "DEFAULT_MODEL" "mistral/mistral-medium" | 
+    setValueAtPath "OPENAI_USE_FUNCTIONS" "false" | 
     toToml |
     replaceAllRegex "[ ']" ""
 )}}
