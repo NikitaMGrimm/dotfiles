@@ -4,7 +4,6 @@ DISABLE_AUTO_UPDATE="true"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
 
 # Theming
 ZSH_THEME="robbyrussell"
@@ -33,9 +32,10 @@ plugins=(
 
 ZSH_CUSTOM=$ZSH/custom
 # Custom plugins. Add to $ZSH_CUSTOM/plugins/
-plugins+=(zsh-vi-mode)
 plugins+=(zsh-autosuggestions)
 plugins+=(fast-syntax-highlighting)
+source $ZSH/oh-my-zsh.sh
+plugins+=(zsh-vi-mode) # Load vi-mode after to not break keybinds
 
 # Ranger configuration
 export VISUAL=$EDITOR
