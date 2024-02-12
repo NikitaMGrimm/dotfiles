@@ -4,6 +4,7 @@ DISABLE_AUTO_UPDATE="true"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
 
 # Theming
 ZSH_THEME="robbyrussell"
@@ -36,15 +37,14 @@ plugins+=(zsh-vi-mode)
 plugins+=(zsh-autosuggestions)
 plugins+=(fast-syntax-highlighting)
 
-# Shell-GPT integration ZSH v0.2, function is inside functionrc
-zle -N _sgpt_zsh
-bindkey ^l _sgpt_zsh
-
 # Ranger configuration
 export VISUAL=$EDITOR
 if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
 
-source $ZSH/oh-my-zsh.sh
+# Shell-GPT integration ZSH v0.2, function is inside functionrc
+zle -N _sgpt_zsh
+bindkey ^l _sgpt_zsh
+
 source ~/.bashrc
 source ~/.functionrc
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
@@ -55,3 +55,4 @@ source /usr/share/nvm/init-nvm.sh
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+
