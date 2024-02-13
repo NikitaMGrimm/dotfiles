@@ -14,6 +14,13 @@
     stripComponents: 1
     refreshPeriod: "168h"
 
+".oh-my-zsh/custom/plugins/jq":
+    type: "archive"
+    url: "https://github.com/reegnz/jq-zsh-plugin/archive/master.tar.gz" 
+    exact: true
+    stripComponents: 1
+    refreshPeriod: "168h"
+
 ".oh-my-zsh/custom/plugins/zsh-vi-mode":
     type: "archive"
     url: "https://github.com/jeffreytse/zsh-vi-mode/archive/master.tar.gz" 
