@@ -1,6 +1,3 @@
 #!/bin/bash
 
-intersect-output \
-  'awk "/\[ALPM\] installed/ { print \$(NF-1) }" /var/log/pacman.log' \
-  'pacman -Qqe' \
-  --case
+rg -FxNf <(pacman -Qqe) <(awk "/\[ALPM\] installed/ { print \$(NF-1) }" /var/log/pacman.log)
