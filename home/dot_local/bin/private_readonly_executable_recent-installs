@@ -1,3 +1,4 @@
 #!/bin/bash
 
-rg -FxNf <(pacman -Qqe) <(awk "/\[ALPM\] installed/ { print \$(NF-1) }" /var/log/pacman.log)
+rg -FxNf <(pacman -Qqe) <(awk "/\[ALPM\] installed/ { print \$(NF-1) }" /var/log/pacman.log) |
+  cut -d: -f2-
