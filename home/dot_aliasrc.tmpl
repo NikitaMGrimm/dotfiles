@@ -1,36 +1,45 @@
-alias grep='grep --color=auto'
+# Renamings
 alias {sudo,s}="sudo "
-alias {pacdeldep,deletedependencies}="{{ .default_app.aur_helper }} -Qqd | {{ .default_app.aur_helper }} -Rsu -"
-alias {pacrecent,recentinstalls}="recent-installs"
-alias chezpush="chezmoi git add .; chezmoi git commit; chezmoi git push"
+alias {calc, fund}="fend"
 alias {gimp,Gimp}="gimp-2.99"
+alias {pacrecent,recentinstalls}="recent-installs"
+alias shop="shop_manager"
+hash safe-rm 2>/dev/null && alias rm="safe-rm"
+
+# Pipes
+alias manf="compgen -c | fzf --preview \"man {}\" | xargs man"
+alias {pacdeldep,deletedependencies}="{{ .default_app.aur_helper }} -Qqd | {{ .default_app.aur_helper }} -Rsu -"
+
+# Multiple commands
+alias chezpush="chezmoi git add .; chezmoi git commit; chezmoi git push"
 alias {reload,execzsh}="clear; exec zsh"
-alias {btrfsl,btrfslist,listbtrfs}="btrfs subvolume list ."
 alias {mountr,mountroot,btrfsmount}="mount -o subvolid=5 -L archroot /mnt; cd /mnt; ls -lha"
 alias {driveinfo,showdrives,fdiskall}="fdisk -l ; echo \\n; lsblk; echo \\n; df -h; echo \\n;findmnt --fstab --target /boot"
-alias shop="shop_manager"
-alias memer="python $HOME/Documents/Repositories/word2vec/memer.py"
-alias vpnprivado="openvpn --cd /etc/openvpn --config ./privadovpn/ber-001.default.ovpn --auth-user-pass ./privadovpn/pswd_file1.conf"
-alias manf="compgen -c | fzf --preview \"man {}\" | xargs man"
-alias rm="safe-rm"
-alias cat="bat --paging=never"
 
+# Commands
+alias {btrfsl,btrfslist,listbtrfs}="btrfs subvolume list ."
+alias vpnprivado="openvpn --cd /etc/openvpn --config ./privadovpn/ber-001.default.ovpn --auth-user-pass ./privadovpn/pswd_file1.conf"
+alias memer="python $HOME/Documents/Repositories/word2vec/memer.py"
+
+# Flag shortcuts 
+alias grep='grep --color=auto'
+hash bat 2>/dev/null && alias cat="bat --paging=never"
 if hash eza 2>/dev/null; then
-        alias ls='eza'
-        alias l='eza -l --all --group-directories-first --git'
-        alias ll='eza -l --all --all --group-directories-first --git'
-        alias lt='eza -T --git-ignore --level=2 --group-directories-first'
-        alias llt='eza -lT --git-ignore --level=2 --group-directories-first'
-        alias lT='eza -T --git-ignore --level=4 --group-directories-first'
+  alias ls='eza'
+  alias l='eza -l --all --group-directories-first --git'
+  alias ll='eza -l --all --all --group-directories-first --git'
+  alias lt='eza -T --git-ignore --level=2 --group-directories-first'
+  alias llt='eza -lT --git-ignore --level=2 --group-directories-first'
+  alias lT='eza -T --git-ignore --level=4 --group-directories-first'
 elif hash lsd 2>/dev/null; then
-        alias ls='lsd'
-        alias l='lsd -l --all --group-directories-first'
-        alias ll='lsd -l --all --group-directories-first'
-        alias lt='lsd --tree --depth=2 --group-directories-first'
-        alias llt='lsd -l --tree --depth=2 --group-directories-first'
-        alias lT='lsd --tree --depth=4 --group-directories-first'
+  alias ls='lsd'
+  alias l='lsd -l --all --group-directories-first'
+  alias ll='lsd -l --all --group-directories-first'
+  alias lt='lsd --tree --depth=2 --group-directories-first'
+  alias llt='lsd -l --tree --depth=2 --group-directories-first'
+  alias lT='lsd --tree --depth=4 --group-directories-first'
 else
-        alias l='ls -lah'
-        alias ll='ls -alF'
-        alias la='ls -A'
+  alias l='ls -lah'
+  alias ll='ls -alF'
+  alias la='ls -A'
 fi

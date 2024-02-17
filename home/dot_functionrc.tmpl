@@ -53,3 +53,12 @@ function ranger {
     fi
     command rm -f -- "$tempfile" 2>/dev/null
 }
+
+check_command() {
+    if hash "$1" 2>/dev/null; then
+        echo "true: command $1 exists"
+    else
+        echo "false: command $1 does not exist"
+    fi
+}
+
