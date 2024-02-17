@@ -10,6 +10,6 @@ default_app:
   editor: nvim
   terminal: kitty
   shell: zsh
-  pager: less
+  pager: bat
   bar: waybar
   aur_helper: yay
