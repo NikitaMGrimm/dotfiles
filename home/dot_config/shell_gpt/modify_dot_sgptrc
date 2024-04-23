@@ -1,7 +1,7 @@
 {{ /* chezmoi:modify-template */ }}
 {{ $toml_file := (
     fromIni .chezmoi.stdin | 
-    setValueAtPath "DEFAULT_MODEL" "together_ai/deepseek-ai/deepseek-coder-33b-instruct" | 
+    setValueAtPath "DEFAULT_MODEL" "together_ai/meta-llama/Llama-3-70b-chat-hf" | 
     setValueAtPath "OPENAI_USE_FUNCTIONS" "false" | 
     toToml |
     replaceAllRegex "[ ']" ""
