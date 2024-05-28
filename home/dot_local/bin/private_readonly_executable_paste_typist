@@ -1,0 +1,12 @@
+#!/bin/bash
+
+sleep 5
+
+clipboard_content=$(wl-paste)
+
+# Loop through each character in the clipboard content
+for (( i=0; i<${#clipboard_content}; i++ )); do
+  # Type each character using xdotool
+  xdotool type "${clipboard_content:$i:1}"
+  sleep 0.01
+done
