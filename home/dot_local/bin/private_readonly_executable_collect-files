@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <DIRECTORY> <REGEX>"
+    exit 1
+fi
+
+DIRECTORY=$1
+REGEX=$2
+
+if [ ! -d "$DIRECTORY" ]; then
+    echo "Directory $DIRECTORY does not exist."
+    exit 1
+fi
+
+output=""
+
+for file in "$DIRECTORY"/*; do
+    if [[ $(basename "$file") =~ $REGEX ]]; then
+        output+="$file:\n"
+        output+="\`\`\`\n"
+        output+=$(cat "$file")
+        output+="\n\`\`\`\n\n"
+    fi
+done
+
+echo -e "$output"
